@@ -9,5 +9,5 @@ Créer un stand de granita avec la création d'entreprise
 ## Comment me trouver
 - GitHub : (Remymartinezz
 ## Mes 2 Sites preferées
--statyx-fr
--martinezclarity.com
+- statyx-fr
+- martinezclarity.com
