@@ -11,4 +11,5 @@ Créer un stand de granita avec la création d'entreprise
 ## Mes 2 Sites preferées
 -  [Statyx](statyx.fr)
 -  [Martinez Clarity](martinezclarity.com)
+_- Repo cloné et ouvert dans VS Code._
 
