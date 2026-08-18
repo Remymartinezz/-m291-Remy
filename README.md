@@ -7,7 +7,7 @@ Je suis Rémy Martinez un apprenti médiamaticien de 3ème année
 ## Mon projet
 Créer un stand de granita avec la création d'entreprise
 ## Comment me trouver
-- GitHub : (Remymartinezz
+- GitHub : Remymartinezz
 ## Mes 2 Sites preferées
 -  [Statyx](statyx.fr)
 -  [Martinez Clarity](martinezclarity.com)
