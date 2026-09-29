@@ -1,0 +1,365 @@
+/* ==========================================================================
+   SENTIA — Piste A · Éditoriale & Sobre
+   Inspiration : presse économique suisse haut de gamme.
+   Sommaire : 1 Variables · 2 Base · 3 Cadre · 4 Masthead · 5 Fil & cartes
+              6 Recherche · 7 Fiche détail · 8 Feuilles · 9 Onboarding
+              10 Notifications · 11 Réglages · 12 Navigation · 13 Board
+   ========================================================================== */
+
+/* 1. VARIABLES ------------------------------------------------------------ */
+:root {
+  /* Couleurs — blanc chaud, bleu nuit, gris perle */
+  --c-paper:      #fbf8f2;   /* fond principal */
+  --c-paper-2:    #f3efe6;   /* surfaces secondaires */
+  --c-pearl:      #e4e6e9;   /* gris perle */
+  --c-rule:       #d5d3cc;   /* séparateurs fins */
+  --c-ink:        #14213d;   /* bleu nuit : texte + CTA (≈15:1 sur paper) */
+  --c-ink-soft:   #4a5468;   /* texte secondaire (≈7:1) */
+  --c-ink-mute:   #5f6878;   /* métadonnées (≈5,3:1) */
+  --c-on-ink:     #fbf8f2;
+  --c-up:         #2d5e46;   /* hausse — vert sourd (≈7:1) */
+  --c-down:       #8a2f38;   /* baisse — bordeaux sourd (≈7:1) */
+  --c-backdrop:   rgba(20, 33, 61, .38);
+
+  /* Typographie */
+  --f-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --f-sans:  "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --fs-xs: .6875rem;   /* 11 */
+  --fs-sm: .8125rem;   /* 13 */
+  --fs-md: .9375rem;   /* 15 */
+  --fs-lg: 1.125rem;   /* 18 */
+  --fs-xl: 1.5rem;     /* 24 */
+  --fs-2xl: 2rem;      /* 32 */
+
+  /* Espacements */
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem;
+  --s-5: 1.5rem; --s-6: 2rem;  --s-7: 3rem;
+  --gutter: 1.25rem;
+
+  /* Rayons discrets, ombres quasi absentes */
+  --r-sm: 2px; --r-md: 4px; --r-lg: 10px;
+  --shadow-sheet: 0 -6px 24px rgba(20, 33, 61, .10);
+  --shadow-phone: 0 30px 60px rgba(20, 33, 61, .25);
+
+  /* Transitions */
+  --t-fast: 140ms ease;
+  --t-med: 260ms cubic-bezier(.2, .7, .2, 1);
+}
+
+/* Thème sombre (réglage « Apparence ») */
+[data-theme="dark"] {
+  --c-paper:    #101828;
+  --c-paper-2:  #182236;
+  --c-pearl:    #263248;
+  --c-rule:     #2f3b52;
+  --c-ink:      #f1ede4;
+  --c-ink-soft: #b9c0cf;
+  --c-ink-mute: #a2abbd;
+  --c-on-ink:   #101828;
+  --c-up:       #7fc79d;
+  --c-down:     #ee9aa2;
+  --c-backdrop: rgba(0, 0, 0, .55);
+}
+
+/* 2. BASE ----------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  margin: 0; min-height: 100vh;
+  display: grid; place-items: center;
+  background: #cfd2d8;
+  font-family: var(--f-sans);
+  color: var(--c-ink);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+h1, h2, h3, p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+:focus-visible { outline: 2px solid var(--c-ink); outline-offset: 2px; }
+[hidden] { display: none !important; }
+svg.i { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.serif { font-family: var(--f-serif); }
+.kicker {
+  font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--c-ink-mute); font-weight: 600;
+}
+
+/* 3. CADRE SMARTPHONE ----------------------------------------------------- */
+.phone {
+  width: 414px; height: 868px; padding: 12px;
+  background: #0e1626; border-radius: 54px;
+  box-shadow: var(--shadow-phone);
+}
+.app {
+  position: relative; overflow: hidden;
+  width: 390px; height: 844px;
+  border-radius: 42px;
+  background: var(--c-paper);
+  display: flex; flex-direction: column;
+}
+
+/* 4. MASTHEAD (en-tête de journal) --------------------------------------- */
+.masthead { padding: 22px var(--gutter) 0; flex: none; }
+.masthead__row { display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+.brand { display: flex; align-items: baseline; gap: var(--s-2); }
+.brand__name { font-family: var(--f-serif); font-size: 1.75rem; font-weight: 600; letter-spacing: -.01em; line-height: 1; }
+.brand__mark { width: 22px; height: 22px; align-self: center; }
+.masthead__actions { display: flex; gap: var(--s-1); }
+.icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: var(--r-md); transition: background var(--t-fast); }
+.icon-btn:hover { background: var(--c-paper-2); }
+.icon-btn[aria-pressed="true"] svg { fill: currentColor; }
+.masthead__dateline {
+  display: flex; justify-content: space-between; margin-top: var(--s-2);
+  padding: var(--s-2) 0; border-top: 2px solid var(--c-ink); border-bottom: 1px solid var(--c-ink);
+  font-size: var(--fs-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--c-ink-soft);
+}
+
+.view { flex: 1; overflow-y: auto; padding: var(--s-4) var(--gutter) 108px; scrollbar-width: none; outline: 0; }
+.view::-webkit-scrollbar { display: none; }
+.section-title { font-family: var(--f-serif); font-size: var(--fs-xl); font-weight: 500; line-height: 1.15; margin: var(--s-2) 0 var(--s-3); }
+
+/* Onglets de filtre : style « rubriques de journal » */
+.filters { display: flex; gap: var(--s-4); overflow-x: auto; border-bottom: 1px solid var(--c-rule); scrollbar-width: none; margin-bottom: var(--s-1); }
+.filters::-webkit-scrollbar { display: none; }
+.filter {
+  flex: none; padding: var(--s-3) 0 calc(var(--s-3) - 2px); min-height: 44px;
+  font-size: var(--fs-sm); letter-spacing: .06em; text-transform: uppercase; font-weight: 600;
+  color: var(--c-ink-mute); border-bottom: 2px solid transparent; transition: color var(--t-fast);
+}
+.filter[aria-pressed="true"] { color: var(--c-ink); border-bottom-color: var(--c-ink); }
+
+/* 5. FIL & CARTES --------------------------------------------------------- */
+.feed > li { border-bottom: 1px solid var(--c-rule); }
+.card {
+  display: grid; grid-template-columns: 52px 1fr auto; column-gap: var(--s-3);
+  width: 100%; text-align: left; padding: var(--s-4) 0; align-items: start;
+  transition: background var(--t-fast);
+}
+.card:hover { background: var(--c-paper-2); }
+.monogram {
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--c-ink);
+  display: grid; place-items: center;
+  font-family: var(--f-serif); font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em;
+}
+.card__ticker { margin-top: var(--s-2); font-size: var(--fs-xs); letter-spacing: .1em; font-weight: 600; text-align: center; width: 48px; color: var(--c-ink-soft); }
+.card__title { font-family: var(--f-serif); font-size: var(--fs-lg); line-height: 1.22; font-weight: 600; margin: 2px 0 var(--s-2); }
+.card__teaser { font-size: var(--fs-sm); line-height: 1.45; color: var(--c-ink-soft); }
+.card__meta { margin-top: var(--s-2); font-size: var(--fs-xs); color: var(--c-ink-mute); letter-spacing: .02em; }
+.card__meta b { font-weight: 600; }
+
+/* Variation : signe + flèche + couleur (jamais la couleur seule) */
+.delta { display: inline-flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; font-weight: 600; font-size: var(--fs-md); white-space: nowrap; }
+.delta svg { width: 12px; height: 12px; fill: currentColor; stroke: none; }
+.delta--up { color: var(--c-up); }
+.delta--down { color: var(--c-down); }
+.delta--flat { color: var(--c-ink-soft); }
+
+/* 6. RECHERCHE ------------------------------------------------------------ */
+.searchbar { display: flex; align-items: center; gap: var(--s-2); border-bottom: 1.5px solid var(--c-ink); padding-bottom: var(--s-2); margin-bottom: var(--s-3); }
+.searchbar input { flex: 1; min-width: 0; border: 0; background: transparent; font-family: var(--f-serif); font-size: var(--fs-lg); padding: var(--s-2) 0; outline: 0; }
+.searchbar input::placeholder { color: var(--c-ink-mute); font-style: italic; }
+.result-count { font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--c-ink-mute); font-weight: 600; margin: var(--s-3) 0 0; }
+.empty { text-align: center; padding: var(--s-7) var(--s-4); }
+.empty__title { font-family: var(--f-serif); font-size: var(--fs-xl); margin-bottom: var(--s-2); }
+.empty p { color: var(--c-ink-soft); line-height: 1.5; font-size: var(--fs-md); }
+.empty .rule { width: 40px; height: 2px; background: var(--c-ink); margin: 0 auto var(--s-4); }
+
+/* 7. FICHE DÉTAIL --------------------------------------------------------- */
+.layer { position: absolute; inset: 0; z-index: 10; background: var(--c-backdrop); backdrop-filter: blur(3px); animation: fade var(--t-med); }
+.layer--detail-open { z-index: 20; }
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { transform: translateY(24px); opacity: 0; } }
+.sheet-full {
+  position: absolute; left: 12px; right: 12px; top: 64px; bottom: 100px;
+  background: var(--c-paper); border-radius: var(--r-lg); border: 1px solid var(--c-rule);
+  display: flex; flex-direction: column; overflow: hidden; animation: rise var(--t-med);
+}
+.sheet-full__bar { display: flex; align-items: center; justify-content: space-between; padding: var(--s-2) var(--s-2) var(--s-2) var(--s-4); border-bottom: 1px solid var(--c-rule); flex: none; }
+.trust { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--fs-xs); letter-spacing: .04em; color: var(--c-ink-soft); }
+.trust b { color: var(--c-ink); font-size: var(--fs-sm); }
+.sheet-full__body { flex: 1; overflow-y: auto; padding: var(--s-4) var(--s-4) var(--s-5); scrollbar-width: none; }
+.sheet-full__body::-webkit-scrollbar { display: none; }
+.detail__head { display: grid; grid-template-columns: 1fr auto; gap: var(--s-3); align-items: start; }
+.detail__title { font-family: var(--f-serif); font-size: 1.625rem; line-height: 1.12; font-weight: 600; margin: var(--s-2) 0 var(--s-2); letter-spacing: -.01em; }
+.detail__stand { font-family: var(--f-serif); font-style: italic; font-size: var(--fs-md); line-height: 1.45; color: var(--c-ink-soft); }
+.detail__quote { text-align: right; border-left: 1px solid var(--c-rule); padding-left: var(--s-3); }
+.detail__quote .delta { font-size: var(--fs-lg); }
+.detail__ticker { display: block; margin-top: var(--s-1); font-size: var(--fs-xs); letter-spacing: .1em; color: var(--c-ink-soft); font-weight: 600; }
+.brief { margin: var(--s-5) 0 var(--s-4); border-top: 2px solid var(--c-ink); }
+.brief__row { display: grid; grid-template-columns: 78px 1fr; gap: var(--s-3); padding: var(--s-3) 0; border-bottom: 1px solid var(--c-rule); }
+.brief__row p { font-size: var(--fs-md); line-height: 1.5; }
+.analysis h3 { font-family: var(--f-serif); font-size: var(--fs-lg); margin-bottom: var(--s-2); }
+.analysis p { font-family: var(--f-serif); font-size: 1.0125rem; line-height: 1.6; margin-bottom: var(--s-3); }
+.source { display: block; margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--c-rule); font-size: var(--fs-xs); line-height: 1.5; color: var(--c-ink-soft); }
+.source a { color: var(--c-ink); text-decoration: underline; text-underline-offset: 3px; }
+.sheet-full__foot { padding: var(--s-3) var(--s-4) var(--s-4); border-top: 1px solid var(--c-rule); flex: none; background: var(--c-paper); }
+
+/* Boutons */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-2);
+  width: 100%; min-height: 48px; padding: 0 var(--s-4);
+  background: var(--c-ink); color: var(--c-on-ink); border: 1px solid var(--c-ink);
+  border-radius: var(--r-md); font-size: var(--fs-sm); font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  transition: opacity var(--t-fast);
+}
+.btn:hover { opacity: .9; }
+.btn[disabled] { background: var(--c-pearl); border-color: var(--c-pearl); color: var(--c-ink-mute); cursor: not-allowed; }
+.btn--ghost { background: transparent; color: var(--c-ink); }
+.btn--auto { width: auto; }
+
+/* 8. FEUILLES (courtiers, à propos) -------------------------------------- */
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; background: var(--c-paper);
+  border-radius: var(--r-lg) var(--r-lg) 0 0; padding: var(--s-2) var(--gutter) var(--s-5);
+  box-shadow: var(--shadow-sheet); animation: rise var(--t-med);
+}
+.sheet__grip { width: 36px; height: 3px; border-radius: 2px; background: var(--c-rule); margin: var(--s-2) auto var(--s-4); }
+.sheet__title { font-family: var(--f-serif); font-size: var(--fs-xl); line-height: 1.15; font-weight: 500; margin-bottom: var(--s-2); }
+.sheet__lead { font-size: var(--fs-sm); line-height: 1.5; color: var(--c-ink-soft); margin-bottom: var(--s-4); }
+.broker {
+  display: flex; align-items: center; justify-content: space-between; width: 100%;
+  padding: var(--s-4) var(--s-3); margin-bottom: var(--s-2); text-align: left;
+  border: 1px solid var(--c-ink); border-radius: var(--r-md); transition: background var(--t-fast);
+}
+.broker:hover { background: var(--c-paper-2); }
+.broker__name { font-family: var(--f-serif); font-size: var(--fs-lg); font-weight: 600; display: block; }
+.broker__cta { font-size: var(--fs-sm); color: var(--c-ink-soft); }
+.sheet__cancel { display: block; margin: var(--s-3) auto 0; min-height: 44px; padding: 0 var(--s-5); font-size: var(--fs-sm); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; color: var(--c-ink-soft); }
+
+/* 9. ONBOARDING ----------------------------------------------------------- */
+.onb {
+  position: absolute; left: 20px; right: 20px; top: 84px; bottom: 96px;
+  background: var(--c-paper); border: 1px solid var(--c-rule); border-radius: var(--r-lg);
+  padding: var(--s-5) var(--s-5) var(--s-4); display: flex; flex-direction: column; animation: rise var(--t-med);
+}
+.onb__title { font-family: var(--f-serif); font-size: var(--fs-2xl); line-height: 1.08; font-weight: 500; letter-spacing: -.015em; margin: var(--s-4) 0 var(--s-3); }
+.onb__rule { width: 48px; height: 2px; background: var(--c-ink); margin-bottom: var(--s-4); }
+.onb__lead { font-family: var(--f-serif); font-size: var(--fs-lg); line-height: 1.5; color: var(--c-ink-soft); }
+.onb__body { flex: 1; overflow-y: auto; scrollbar-width: none; }
+.onb__foot { flex: none; display: flex; flex-direction: column; align-items: center; gap: var(--s-4); padding-top: var(--s-3); }
+.dots { display: flex; gap: 6px; }
+.dots span { width: 22px; height: 3px; background: var(--c-pearl); }
+.dots span[aria-current="true"] { background: var(--c-ink); }
+.steps { margin-top: var(--s-3); border-top: 2px solid var(--c-ink); }
+.steps li { display: grid; grid-template-columns: 34px 1fr; gap: var(--s-3); padding: var(--s-3) 0; border-bottom: 1px solid var(--c-rule); }
+.steps__n { font-family: var(--f-serif); font-size: var(--fs-xl); line-height: 1; color: var(--c-ink-mute); }
+.steps strong { display: block; font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 2px; }
+.steps span { font-family: var(--f-serif); font-size: var(--fs-md); line-height: 1.4; color: var(--c-ink-soft); }
+.checks { margin-top: var(--s-2); }
+.check { display: flex; align-items: center; gap: var(--s-3); width: 100%; min-height: 48px; border-bottom: 1px solid var(--c-rule); text-align: left; font-family: var(--f-serif); font-size: var(--fs-lg); }
+.check__box { width: 20px; height: 20px; border: 1.5px solid var(--c-ink); border-radius: var(--r-sm); display: grid; place-items: center; flex: none; }
+.check__box svg { width: 14px; height: 14px; stroke: var(--c-on-ink); stroke-width: 2.4; fill: none; opacity: 0; }
+.check[aria-checked="true"] .check__box { background: var(--c-ink); }
+.check[aria-checked="true"] .check__box svg { opacity: 1; }
+.link-btn { min-height: 44px; font-size: var(--fs-sm); text-decoration: underline; text-underline-offset: 3px; color: var(--c-ink); }
+
+/* 10. NOTIFICATIONS ------------------------------------------------------- */
+.chips { display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center; margin-bottom: var(--s-2); }
+.chip { display: inline-flex; align-items: center; gap: var(--s-2); min-height: 32px; padding: 0 var(--s-3); border: 1px solid var(--c-ink); border-radius: 100px; font-size: var(--fs-sm); }
+.chip svg { width: 12px; height: 12px; }
+.notif { position: relative; }
+.notif .card { padding-left: var(--s-3); }
+.notif--unread .card { background: var(--c-paper-2); }
+.notif__flag { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--c-down); margin-bottom: 4px; }
+.notif__flag svg { width: 14px; height: 14px; }
+.notif__dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--c-ink); margin-right: 6px; vertical-align: 1px; }
+.side { display: flex; flex-direction: column; align-items: flex-end; gap: var(--s-2); }
+
+/* 11. RÉGLAGES ------------------------------------------------------------ */
+.group { margin-top: var(--s-5); }
+.group:first-of-type { margin-top: var(--s-2); }
+.group__label { padding-bottom: var(--s-2); border-bottom: 2px solid var(--c-ink); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); width: 100%; min-height: 56px; padding: var(--s-3) 0; border-bottom: 1px solid var(--c-rule); text-align: left; }
+.row__main { font-family: var(--f-serif); font-size: var(--fs-lg); line-height: 1.25; }
+.row__sub { display: block; margin-top: 2px; font-family: var(--f-sans); font-size: var(--fs-sm); color: var(--c-ink-soft); }
+.row svg { color: var(--c-ink-soft); }
+.switch { width: 48px; height: 28px; border: 1.5px solid var(--c-ink); border-radius: 100px; position: relative; flex: none; transition: background var(--t-fast); }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 19px; height: 19px; border-radius: 50%; background: var(--c-ink); transition: transform var(--t-fast), background var(--t-fast); }
+.switch[aria-checked="true"] { background: var(--c-ink); }
+.switch[aria-checked="true"]::after { transform: translateX(20px); background: var(--c-paper); }
+.fineprint { margin-top: var(--s-5); font-size: var(--fs-xs); line-height: 1.5; color: var(--c-ink-mute); }
+
+/* 12. NAVIGATION BASSE ---------------------------------------------------- */
+.tabbar {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 30;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  padding: var(--s-2) var(--s-4) var(--s-4); background: var(--c-paper); border-top: 1px solid var(--c-ink);
+}
+.tab { display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 52px; padding-top: var(--s-2); color: var(--c-ink-mute); font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; position: relative; }
+.tab[aria-current="page"] { color: var(--c-ink); }
+.tab[aria-current="page"]::before { content: ""; position: absolute; top: -9px; left: 30%; right: 30%; height: 3px; background: var(--c-ink); }
+.tab__badge { position: absolute; top: 4px; left: calc(50% + 8px); min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--c-ink); color: var(--c-on-ink); font-size: 10px; display: grid; place-items: center; letter-spacing: 0; }
+
+/* Splash */
+.splash { position: absolute; inset: 0; z-index: 50; background: var(--c-paper); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.splash__brand { font-family: var(--f-serif); font-size: 3.25rem; font-weight: 500; letter-spacing: -.02em; margin-top: var(--s-3); }
+.splash__tag { font-family: var(--f-serif); font-style: italic; color: var(--c-ink-soft); margin-top: var(--s-2); }
+.splash__status { position: absolute; bottom: 132px; left: 40px; right: 40px; text-align: center; }
+.splash__status p { font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--c-ink-soft); margin-bottom: var(--s-3); }
+.progress { height: 2px; background: var(--c-pearl); }
+.progress i { display: block; height: 100%; width: 0; background: var(--c-ink); animation: load 1.6s ease-out forwards; }
+@keyframes load { to { width: 100%; } }
+
+/* Mode « embed » (captures) : pas de marge */
+.embed body { display: block; background: transparent; min-height: 0; }
+.embed .phone { width: 390px; height: 844px; padding: 0; background: none; box-shadow: none; border-radius: 0; }
+
+/* 13. BOARD DE PRÉSENTATION ---------------------------------------------- */
+.board { width: 1360px; padding: 56px 48px 40px; background: #e9e6df; margin: 0 auto; }
+.board__head { display: flex; justify-content: space-between; align-items: baseline; border-top: 3px solid #14213d; border-bottom: 1px solid #14213d; padding: 14px 0; margin-bottom: 48px; }
+.board__head h1 { font-family: var(--f-serif); font-size: 2.4rem; font-weight: 500; letter-spacing: -.02em; }
+.board__head p { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #4a5468; }
+.board__grid { display: grid; grid-template-columns: repeat(3, 414px); gap: 44px 32px; justify-content: center; }
+.board figure { margin: 0; }
+.board figcaption { margin-top: 16px; text-align: center; font-family: var(--f-serif); font-size: 1rem; color: #14213d; }
+.board figcaption span { display: block; font-family: var(--f-sans); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: #5f6878; margin-bottom: 2px; }
+.board iframe { width: 390px; height: 844px; border: 0; display: block; border-radius: 42px; }
+.board .phone { box-shadow: 0 18px 40px rgba(20, 33, 61, .18); }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Écrans plus larges que le mobile : le cadre reste centré ; sous 430 px, plein écran */
+@media (max-width: 430px) {
+  body { display: block; background: var(--c-paper); }
+  .phone { width: 100%; height: 100dvh; padding: 0; border-radius: 0; box-shadow: none; background: none; }
+  .app { width: 100%; height: 100%; border-radius: 0; }
+}
+
+/* Calques modaux au-dessus de la navigation (onboarding, feuilles) */
+#layer-onboarding { z-index: 45; }
+#layer-sheet { z-index: 46; }
+
+/* ==========================================================================
+   MONTSERRAT (fichiers locaux, aucune dépendance externe)
+   Regular 400 · Medium 500-600 · Bold 700+ — usage sobre : Medium par défaut
+   ========================================================================== */
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Regular.ttf") format("truetype"); font-weight: 300 400; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Medium.ttf") format("truetype"); font-weight: 500 600; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("fonts/Montserrat-Bold.ttf") format("truetype"); font-weight: 700 900; font-display: swap; }
+
+:root { --f-sans: "Montserrat", "Segoe UI", Arial, sans-serif; }
+.masthead { padding-bottom: var(--s-2); border-bottom: 2px solid var(--c-ink); }
+.brand__mark { width: 48px; height: auto; color: var(--c-ink); }
+.dateline { margin: 0 0 var(--s-3); font-size: var(--fs-xs); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--c-ink-mute); }
+.section-title:has(+ .dateline) { margin-bottom: 2px; }
+.card { grid-template-columns: 68px 1fr; }
+.card__side { display: flex; flex-direction: column; align-items: center; gap: var(--s-2); }
+.card__side .delta { font-size: var(--fs-xs); }
+.card__side .card__ticker { margin-top: -2px; }
+.kicker, .filter, .tab, .btn { font-weight: 500; }
+
+/* ==========================================================================
+   NEWSREADER (fichiers locaux) — réservé aux éléments importants :
+   titres, chapeaux, titres de feuilles et d'onboarding
+   ========================================================================== */
+@font-face { font-family: "Newsreader"; src: url("fonts/Newsreader-Variable.ttf") format("truetype"); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Newsreader"; src: url("fonts/Newsreader-Italic-Variable.ttf") format("truetype"); font-weight: 200 800; font-style: italic; font-display: swap; }
+:root { --f-head: "Newsreader", "Iowan Old Style", Georgia, serif; }
+:root { --f-serif: var(--f-head); }
+.section-title, .card__title, .detail__title, .detail__stand, .sheet__title, .onb__title, .onb__lead, .empty__title, .analysis h3, .brief__row p, .row__main { font-family: var(--f-head); }
+.card__title { font-size: 1.25rem; font-weight: 600; }
+.detail__title { font-size: 1.9rem; font-weight: 600; }
+.section-title, .onb__title, .sheet__title { font-weight: 500; }
+.analysis p { font-family: var(--f-head); font-size: 1.1rem; }
