@@ -1,134 +1,95 @@
-# S07-AV1 — Piste hybride Sentia
+# S07-AV1, Piste hybride Sentia
 
 ## 1. Objectif
 
-La piste hybride combine les qualités principales des deux directions explorées lors de l'exploration divergente.
+La piste hybride part principalement de la Piste A, qui a été retenue après la comparaison des trois propositions.
 
-La **Piste A — Éditoriale & Sobre** constitue la base principale en raison de sa lisibilité, de sa cohérence et de son adéquation avec une application d'information financière.
+Je garde de la Piste A la lisibilité, la hiérarchie des informations et le côté éditorial. Je reprends de la Piste B uniquement certains éléments plus doux dans les formes.
 
-La **Piste B — Chaleureuse & Terroir** apporte uniquement certains principes de douceur dans les formes et les composants afin d'éviter une interface trop froide ou strictement institutionnelle.
+Le but n'est pas de mélanger les deux styles mais de garder une identité claire pour Sentia.
 
-L'objectif n'est pas de mélanger les deux identités visuelles, mais de construire un système cohérent adapté à Sentia.
+## 2. Éléments conservés de la Piste A
 
----
+La Piste A sert de base pour :
 
-## 2. Forces retenues
+- la hiérarchie des informations ;
+- la typographie ;
+- la structure des cartes ;
+- les espacements ;
+- la navigation ;
+- le style éditorial ;
+- la présentation des informations financières.
 
-### Piste A
+Ces éléments sont importants pour que l'application reste sérieuse et facile à lire.
 
-- Hiérarchie typographique claire.
-- Excellente lisibilité des informations financières.
-- Système visuel cohérent entre les écrans.
-- Présentation éditoriale adaptée à l'actualité financière.
+## 3. Éléments repris de la Piste B
 
-### Piste B
+Je reprends principalement le côté plus doux des composants :
 
-- Formes plus douces et plus accueillantes.
-- Composants moins rigides.
-- Sensation plus humaine dans l'interface.
+- des arrondis légèrement plus présents ;
+- des cartes moins rigides ;
+- des boutons plus accueillants ;
+- une sensation générale un peu moins froide.
 
-Les couleurs vertes et terracotta de la Piste B ne sont pas conservées, car elles correspondent moins au positionnement visuel retenu pour Sentia.
+Je ne reprends pas les couleurs vertes et orange de la Piste B car elles ne correspondent pas au style que je veux garder pour Sentia.
 
----
+## 4. Palette
 
-## 3. Design system hybride
+La nouvelle base utilise :
 
-### Palette
+- fond blanc ;
+- bleu nuit pour les textes principaux ;
+- gris neutres pour les informations secondaires ;
+- gris clair pour les bordures ;
+- une seule couleur d'accent.
 
-La palette repose principalement sur des tons neutres et institutionnels.
+La couleur d'accent doit rester assez rare. Elle peut être utilisée pour les CTA principaux, certains éléments interactifs et quelques informations importantes.
 
-- **Fond principal : blanc**
-- **Texte principal : bleu nuit / presque noir**
-- **Texte secondaire : gris neutre**
-- **Bordures : gris clair**
-- **Couleur d'accent : une seule couleur vive et maîtrisée**
+Elle ne doit pas être utilisée partout.
 
-La couleur d'accent est utilisée de manière parcimonieuse pour :
+## 5. Typographie
 
-- les CTA principaux ;
-- certains éléments interactifs ;
-- les informations nécessitant une attention particulière.
+La typographie éditoriale de la Piste A est conservée pour les titres et les éléments importants.
 
-Elle ne doit pas être utilisée comme décoration générale.
+Les données, boutons et informations fonctionnelles peuvent utiliser une typographie sans empattements afin de rester faciles à lire.
 
-### Typographie
+## 6. Formes et composants
 
-La structure typographique de la Piste A est conservée afin de maintenir son caractère éditorial.
+Les cartes et les boutons utilisent des arrondis modérés.
 
-Les titres utilisent une typographie avec empattements lorsque cela améliore la hiérarchie et l'identité éditoriale.
+Je veux éviter les formes trop rondes de la Piste B afin de garder un aspect professionnel.
 
-Les informations fonctionnelles, données financières et contrôles utilisent une typographie sans empattements pour maximiser la lisibilité.
+Les composants doivent rester simples et faciles à réutiliser sur tous les écrans.
 
-### Formes
+## 7. Hiérarchie de l'information
 
-Les formes de la Piste A sont légèrement assouplies avec certains principes de la Piste B.
+La lecture d'une actualité doit rester organisée de cette manière :
 
-- Arrondis modérés.
-- Cartes légèrement plus douces.
-- Boutons clairement délimités.
-- Aucun effet excessivement arrondi ou décoratif.
+1. Fait
+2. Impact
+3. Analyse
+4. Source
+5. Action
 
-L'objectif est de conserver une interface professionnelle tout en la rendant plus accueillante.
+Cette hiérarchie doit rester visible même lorsque l'utilisateur parcourt rapidement le fil.
 
-### Espacement
+## 8. Résultat recherché
 
-Le système conserve les espaces généreux de la Piste A.
+Le résultat final doit être sobre, lisible et professionnel, tout en étant légèrement plus chaleureux que la Piste A originale.
 
-Les espacements doivent permettre de distinguer clairement :
+L'interface doit rester adaptée à une application d'actualité financière suisse et ne pas donner l'impression d'une application bancaire ou d'un site d'actualité traditionnel.
 
-1. le titre ;
-2. les données clés ;
-3. l'impact ;
-4. l'analyse ;
-5. la source ;
-6. les actions.
+## 9. Règles pour la suite
 
----
-
-## 4. Principes UX conservés
-
-La structure de navigation commune aux trois propositions reste inchangée.
-
-La hiérarchie de Sentia doit toujours permettre de comprendre rapidement :
-
-**Fait → Impact → Analyse → Source → Action**
-
-Les éléments interactifs doivent être immédiatement identifiables.
-
-Les informations financières importantes ne doivent jamais dépendre uniquement de la couleur pour être comprises.
-
----
-
-## 5. Résultat attendu
-
-La piste hybride doit conserver le caractère éditorial et professionnel de la Piste A tout en intégrant une légère douceur issue de la Piste B.
-
-Le résultat recherché est une interface :
-
-- sobre ;
-- lisible ;
-- institutionnelle ;
-- humaine ;
-- moderne sans être technologique à l'excès ;
-- adaptée à l'actualité financière suisse.
-
-La palette finale reste volontairement limitée afin de maintenir une forte cohérence visuelle.
-
----
-
-## 6. Règle de cohérence
-
-Toute nouvelle interface de Sentia devra respecter les mêmes règles de :
+Les prochains écrans devront respecter les mêmes règles de :
 
 - typographie ;
-- palette ;
+- couleurs ;
 - arrondis ;
 - espacements ;
-- hiérarchie ;
-- boutons ;
 - cartes ;
+- boutons ;
+- hiérarchie ;
 - états interactifs.
 
-Aucun nouvel élément visuel ne doit être ajouté sans respecter ce système.
-
-**La piste hybride devient la base du futur design system de Sentia.**
+Cette piste hybride servira de base pour la suite du design de Sentia.
