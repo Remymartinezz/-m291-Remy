@@ -1,44 +1,83 @@
-# Brief Client — Sentia
+# Brief Client, Sentia
 
-**Pitch**  
-Sentia transforme l'actualité économique en fiches synthétiques pour permettre aux investisseurs particuliers de suivre l'impact sur leurs placements en 5 minutes par jour. Elle filtre le bruit médiatique pour ne garder que l'information essentielle, sourcée et vérifiée.
+## Pitch
 
-**Public**  
-Sophie, 34 ans, employée de commerce à Lausanne. Investisseuse particulière autonome (Swissquote/Yuh) utilisant son téléphone à une main dans les transports. Recherche la rapidité, la fiabilité et l'absence de jargon. (Détails dans `design/persona.md`).
+Sentia transforme l'actualité économique en fiches simples et rapides à lire. L'objectif est de permettre à un investisseur particulier de comprendre en quelques minutes ce qui se passe sur les marchés et ce que cela peut changer pour ses placements.
 
-**Écrans**  
-- **Écran 1 :** Fil d'actualité (Feed principal + modale de détail)
-- **Écran 2 :** Mes Favoris (Fiches sauvegardées)
-- **Écran 3 :** Publier / Proposer une actualité (Bouton central `+`)
+L'application filtre les informations inutiles pour garder uniquement les éléments importants, avec des sources clairement indiquées et vérifiées.
 
-**Contenu de chaque écran**
+## Public
 
-* **Écran 1 — Fil d'actualité (Feed)**  
-  - **On y voit :** Liste de cartes épurées (titre, sujet, indicateur d'impact `+` ou `-` avec %, score de fiabilité `% de trust`).
-  - **On peut y faire :** Filtrer par secteur, sauvegarder en favori, et cliquer sur une carte pour ouvrir l'article entier en modale (fond sombre avec effet `blur`).
-  - **Bouton principal :** Filtres de secteur / Clic sur la carte.
+Sophie, 34 ans, employée de commerce à Lausanne. Elle investit de manière autonome avec Swissquote ou Yuh et consulte principalement Sentia sur son téléphone, notamment dans les transports.
 
-* **Écran 2 — Favoris (Sauvegardés)**  
-  - **On y voit :** Cartes d'actualité enregistrées en mémoire locale (`localStorage`).
-  - **On peut y faire :** Reconsulter les informations importantes et supprimer une fiche.
-  - **Bouton principal :** Retirer des favoris.
+Elle cherche surtout à gagner du temps, avoir des informations fiables et comprendre les actualités sans devoir maîtriser le jargon financier.
 
-* **Écran 3 — Publier / Proposer (+)**  
-  - **On y voit :** Formulaire de saisie épuré (titre, sujet, impact `+`/`-`, %, source).
-  - **On peut y faire :** Remplir les champs avec validation en direct (indicateurs visuels de validation).
-  - **Bouton principal :** Bouton « Envoyer » (s'active uniquement quand tous les champs obligatoires sont remplis).
+Les détails du persona sont disponibles dans `design/persona.md`.
 
-**Ambiance visuelle**  
-Épurée, rassurante, institutionnelle.  
-*Analogie :* Comme une application bancaire suisse de précision (style UBS).
+## Écrans
 
-**Palette**  
-- **Fond :** Blanc pur et gris clair (avec déclinaison Thème Sombre / Noir).
-- **Texte :** Gris anthracite sombre / Noir.
-- **Accent :** Rouge suisse et Rouge sombre.
-- **Attention / Erreur :** Rouge vif (baisses/alertes) et Vert/Noir discret (hausses).
+1. **Fil d'actualité** avec les actualités et une modale pour voir le détail
+2. **Mes favoris** avec les actualités sauvegardées
+3. **Proposer une actualité** avec le bouton `+`
 
-**Interdits**  
-- Pas de Bootstrap, pas de React, pas de compte obligatoire.
-- Pas de publicité ni de pop-ups intempestives.
-- Pas d'analyses graphiques complexes (type candlesticks / bougies de trading).
+## Écran 1 : Fil d'actualité
+
+Les cartes affichent le titre, le secteur, l'impact `+/- %` et le Trust Score.
+
+L'utilisateur peut rechercher une actualité, filtrer le fil par secteur, sauvegarder une carte ou l'ouvrir pour consulter son contenu complet.
+
+**Action principale :** ouvrir une actualité pour voir son détail.
+
+## Écran 2 : Mes favoris
+
+Cette page affiche les actualités que l'utilisateur a sauvegardées. Les favoris sont conservés avec `localStorage`.
+
+L'utilisateur peut ouvrir une fiche pour la relire ou la retirer de ses favoris.
+
+**Action principale :** ouvrir une actualité sauvegardée.
+
+## Écran 3 : Proposer une actualité
+
+Le formulaire contient le titre, le sujet, l'impact, le pourcentage et la source.
+
+Les champs sont vérifiés pendant la saisie afin de signaler rapidement les erreurs.
+
+**Action principale :** envoyer la proposition.
+
+Le bouton « Envoyer » reste désactivé tant que les champs obligatoires ne sont pas correctement remplis.
+
+## Direction visuelle
+
+Sentia doit avoir un style sobre, éditorial et institutionnel, adapté au secteur financier suisse.
+
+L'interface doit être claire, rassurante et peu chargée. Les informations doivent rester au centre de l'écran.
+
+## Palette
+
+- **Fond :** blanc et gris clair
+- **Texte :** anthracite et noir
+- **Couleur d'accent :** une seule couleur utilisée avec parcimonie
+- **Baisse et alertes :** rouge
+- **Hausse :** vert discret
+
+Un thème sombre pourra être ajouté plus tard.
+
+## Contraintes
+
+- HTML5 sémantique
+- CSS3 avec variables
+- JavaScript Vanilla
+- Données locales en JSON
+- `localStorage` pour les favoris
+- Aucun framework externe
+- Pas de compte obligatoire
+- Pas de publicité
+- Pas de pop-ups inutiles
+- Pas de graphiques de trading complexes
+- Interface mobile-first
+
+## Priorité UX
+
+**Comprendre rapidement, consulter le détail, puis sauvegarder ou agir.**
+
+La lisibilité de l'information passe avant les effets visuels.
