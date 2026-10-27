@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentia — Le fil d'actualité financière suisse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Contenu centré : tout ce qui est dans .page reste dans la largeur de l'écran -->
+  <div class="page">
+
+    <!-- ===== En-tête : logo à gauche, recherche à droite (wireframe 01) ===== -->
+    <header class="site-header">
+      <a class="logo" href="#" aria-label="Sentia — accueil">
+        <svg viewBox="0 0 163.61 147.99" aria-hidden="true" focusable="false" fill="currentColor"><path d="M41.08,100.71l-5.95-.85c-3.12-43.65,35.72-72.85,37.98-74.83,2.27-1.98-21.83-2.27-24.09-3.69-2.27-1.42,2.27-10.77,8.5-12.19C63.76,7.73,82.75.08,82.75.08c30.61-1.98,31.18,36,31.18,36,0,0,7.37,3.68,8.22,11.34.85,7.65-24.09,42.24-24.09,42.24,0,0,1.42,7.65,13.32,16.16,11.91,8.5-19.84,32.6-18.71,21.26,1.13-11.34-6.8-19.84-10.2-11.62-3.4,8.22-17.86,11.34-17.86,11.34,4.25-12.47-4.25-18.43-8.22-17.01-3.97,1.42-2.27,20.13-2.27,20.13l-9.07.85.28,8.5h-17.86c-1.13-3.97,13.61-38.55,13.61-38.55ZM66.38,12.41c-7.94,1.35-11.62,3.33-7.72,4.68,3.9,1.35,14.6-.14,14.6-.14,0,0,1.06-5.88-6.87-4.54ZM78.78,10.78c-4.46,3.33,1.7,3.47,2.41,2.2.71-1.28,7.37-2.06,7.37-2.06-.64-2.41-5.31-3.47-9.78-.14ZM81.33,43.66c2.69-3.05,4.61-6.02,2.62-13.89,0,0-2.06,6.8-3.68,6.73-1.63-.07-2.76,0-2.76,0,0,0,1.13,10.2,3.83,7.16ZM72.5,80.51c-3.21,3.4-7.56,10.96-7.56,10.96,0,0,17.39-2.65,20.6-24,0,0-9.83,9.64-13.04,13.04ZM85.58,19.49c-1.77-1.56-5.17-2.34-4.04.21,1.13,2.55,5.67,6.73,8.01,3.54s2.41-8.65,2.41-8.65c0,0-4.61,6.45-6.38,4.89ZM96.71,37.49c-.28-3.33-.99-8.08-3.83-8.29l-.43,6.09-4.32-6.59-.57,7.65s4.82,9.85,6.17,9.43c1.35-.43,3.26-4.96,2.98-8.29ZM105.57,28.56l-2.69,1.98-5.53-5.46-.21,4.54,8.5,8.15-.07-9.21ZM95.17,114.9c1.32.38,1.13,4.91,3.4,5.86s1.32-5.48,2.46-6.8c1.13-1.32,5.86,1.13,5.86,1.13,1.51-7.37-9.64-6.24-9.64-6.24,0,0-.38-2.27-1.13-3.59-.76-1.32-5.1-12.47-5.1-12.47,0,0-1.7,1.51-2.46,6.05-.76,4.54,5.29,15.69,6.61,16.06ZM91.02,85.61c3.97-6.61,8.69-17.2,8.69-17.2,0,0-7.43,5.76-10.58,11.91-3.78,7.37-7.94,10.96-7.94,10.96,0,0,5.86.94,9.83-5.67ZM60.78,99.41c.19,4.35,7.37,15.69,8.88,16.25,1.51.57-.76,3.59,1.7,3.97,2.46.38,1.51-4.35,2.46-5.86.94-1.51,5.67,1.7,5.67,1.7.76-5.1-3.59-7.18-3.59-7.18,0,0-3.78,4.54-8.31-6.8-4.54-11.34-6.99-6.43-6.8-2.08ZM48.5,85.8s30.05-6.24,29.29-28.16c0,0-17.76,15.87-21.73,16.25-3.97.38,7.94-17.57,10.02-19.46,2.08-1.89,7.94-3.97,6.61-16.63,0,0-29.29,22.3-29.1,44.98l-.38,13.61,5.29-10.58Z"/><path d="M.28,118.69l16.63-.57v-7.28l8.03.19-.45,6.88s99.39.78,100.03,0c.64-.78-.57-2.41-.57-2.41-5.67-8.93,5.17-15.94,5.17-15.94,9.85-3.54,15.94,1.77,19.56,3.83,3.61,2.06,2.48,6.66,5.39,7.09,2.91.43,6.52,7.23,8.22,7.8,1.7.57,2.06,6.73-.71,8.29-2.76,1.56-2.81,6.69-4.13,7.25-1.32.57-4.75,3.3-12.12,11.33-7.37,8.03-22.02-3.12-23.91-6.52-1.89-3.4,3.59-11.53,3.59-11.53H33.45l.47,6.99-8.22-.19-.47-6.99-9.64.09.19,6.99H7.56l-.09-6.52-7.46.19.28-8.98ZM147.33,126.63c2.84.65,2.46.56,3.49-1.34,1.03-1.89-2.28-2.92-1.34-3.11.94-.19,1.6-1.8,1.69-3.31.09-1.51-4.54-1.11-4.54-1.11,0,0-3.76,4.55-3.85,5.12-.09.57,4.55,3.76,4.55,3.76ZM134.05,138.01c1.85,1.11,3.01-2.16,3.16-1.21.15.95,1.74,1.67,3.24,1.82,1.51.15,1.3-4.49,1.3-4.49,0,0-4.4-3.94-4.96-4.06-.56-.11-3.94,4.4-3.94,4.4-.76,2.81-.66,2.43,1.2,3.54ZM132,112.26s4.54,3.78,5.1,3.87c.57.09,3.78-4.54,3.78-4.54.66-2.83.57-2.46-1.32-3.5s-2.93,2.27-3.12,1.32-1.8-1.61-3.31-1.7c-1.51-.09-1.13,4.54-1.13,4.54Z"/></svg>
+      </a>
+
+      <button class="btn-recherche" type="button" aria-label="Rechercher une actualité">
+        <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="11" cy="11" r="6.5"/>
+          <path d="M16 16l4.5 4.5"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- ===== Titre de page ===== -->
+    <div class="intro">
+      <h1>L’essentiel du jour</h1>
+      <p class="date">Mardi 29 septembre 2026</p>
+    </div>
+
+    <!-- ===== Filtres par catégorie ===== -->
+    <nav aria-label="Filtres du fil">
+      <div class="filtres">
+        <span class="filtres__icone">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 7h9M17 7h3M4 17h3M11 17h9"/>
+            <circle cx="15" cy="7" r="2"/>
+            <circle cx="9" cy="17" r="2"/>
+          </svg>
+        </span>
+        <ul class="filtres__liste">
+          <li><button class="puce" type="button" aria-pressed="true">Pour vous</button></li>
+          <li><button class="puce" type="button" aria-pressed="false">SMI</button></li>
+          <li><button class="puce" type="button" aria-pressed="false">Banque</button></li>
+          <li><button class="puce" type="button" aria-pressed="false">Tech</button></li>
+          <li><button class="puce" type="button" aria-pressed="false">Devises</button></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ===== Fil d'actualités (données fictives de démonstration) ===== -->
+    <main>
+      <h2 class="visually-hidden">Actualités du jour</h2>
+
+      <section class="cartes-grille" aria-label="Fil d'actualités">
+
+        <article class="carte">
+          <div class="carte__cote">
+            <p class="variation variation--hausse">+1,1 % <span class="visually-hidden">en hausse</span></p>
+            <span class="pastille" aria-hidden="true">N</span>
+            <span class="ticker">NESN</span>
+          </div>
+          <div class="carte__texte">
+            <p class="carte__rubrique">SMI</p>
+            <h3 class="carte__titre"><a class="carte__lien" href="#">Résultats trimestriels de Nestlé</a></h3>
+            <p class="carte__resume">Légère correction à court terme sur l’action au SMI, mais dividende maintenu.</p>
+            <p class="carte__meta"><strong>94 %</strong> fiabilité · il y a 18 min</p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="carte__cote">
+            <p class="variation variation--baisse">−2,8 % <span class="visually-hidden">en baisse</span></p>
+            <span class="pastille" aria-hidden="true">Nv</span>
+            <span class="ticker">NOVN</span>
+          </div>
+          <div class="carte__texte">
+            <p class="carte__rubrique">SMI</p>
+            <h3 class="carte__titre"><a class="carte__lien" href="#">Feux verts pour un traitement Novartis</a></h3>
+            <p class="carte__resume">Commercialisation immédiate aux États-Unis sur un marché estimé à plusieurs milliards.</p>
+            <p class="carte__meta"><strong>95 %</strong> fiabilité · il y a 42 min</p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="carte__cote">
+            <p class="variation variation--hausse">+0,9 % <span class="visually-hidden">en hausse</span></p>
+            <span class="pastille" aria-hidden="true">U</span>
+            <span class="ticker">UBSG</span>
+          </div>
+          <div class="carte__texte">
+            <p class="carte__rubrique">Banque</p>
+            <h3 class="carte__titre"><a class="carte__lien" href="#">UBS précise son calendrier de capital</a></h3>
+            <p class="carte__resume">La banque détaille le renforcement de ses fonds propres pour 2027.</p>
+            <p class="carte__meta"><strong>92 %</strong> fiabilité · il y a 1 h</p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="carte__cote">
+            <p class="variation variation--hausse">+0,4 % <span class="visually-hidden">en hausse</span></p>
+            <span class="pastille" aria-hidden="true">S</span>
+            <span class="ticker">SMI</span>
+          </div>
+          <div class="carte__texte">
+            <p class="carte__rubrique">SMI</p>
+            <h3 class="carte__titre"><a class="carte__lien" href="#">Le SMI termine la séance en hausse</a></h3>
+            <p class="carte__resume">Les valeurs défensives soutiennent l’indice, porté par la santé et l’alimentaire.</p>
+            <p class="carte__meta"><strong>97 %</strong> fiabilité · il y a 2 h</p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="carte__cote">
+            <p class="variation variation--stable">0,0 % <span class="visually-hidden">stable</span></p>
+            <span class="pastille" aria-hidden="true">B</span>
+            <span class="ticker">BNS</span>
+          </div>
+          <div class="carte__texte">
+            <p class="carte__rubrique">Devises</p>
+            <h3 class="carte__titre"><a class="carte__lien" href="#">La BNS maintient son taux directeur</a></h3>
+            <p class="carte__resume">Le franc reste stable face à l’euro après l’annonce de la décision.</p>
+            <p class="carte__meta"><strong>98 %</strong> fiabilité · il y a 3 h</p>
+          </div>
+        </article>
+
+        <article class="carte">
+          <div class="carte__cote">
+            <p class="variation variation--hausse">+1,6 % <span class="visually-hidden">en hausse</span></p>
+            <span class="pastille" aria-hidden="true">L</span>
+            <span class="ticker">LOGN</span>
+          </div>
+          <div class="carte__texte">
+            <p class="carte__rubrique">Tech</p>
+            <h3 class="carte__titre"><a class="carte__lien" href="#">Logitech confirme ses prévisions</a></h3>
+            <p class="carte__resume">Le groupe maintient sa feuille de route pour l’exercice en cours.</p>
+            <p class="carte__meta"><strong>90 %</strong> fiabilité · il y a 5 h</p>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <!-- ===== Pied de page ===== -->
+    <footer class="site-footer">
+      <p>© 2026 — Rémy Martinez · Contenu fictif de démonstration</p>
+    </footer>
+
+  </div>
+
+  <!-- ===== Navigation principale (barre basse du wireframe) ===== -->
+  <nav class="nav-principale" aria-label="Navigation principale">
+    <ul>
+      <li>
+        <a href="#" aria-current="page">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10.5L12 4l8 6.5V20H4z"/><path d="M10 20v-5h4v5"/></svg>
+          Fil
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+          Favoris
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+          Alertes
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>
+          Réglages
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</body>
+</html>

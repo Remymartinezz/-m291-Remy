@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S09-AV2 — Sélecteur :has() et thème dynamique sans JavaScript</title>
+  <style>
+    /* ======================================================================
+       S09-AV2 — :has() : le parent réagit à l'état de son enfant
+       Livrable : exercices/s09/theme-has.html
+       Aucune ligne de JavaScript : tout passe par le CSS.
+       ====================================================================== */
+
+    /* 1. Variables ------------------------------------------------------- */
+    :root {
+      --color-bg: #f8fafc;
+      --color-surface: #ffffff;
+      --color-text: #0f172a;
+      --color-text-muted: #475569;
+      --color-border: #cbd5e1;
+      --color-primary: #0369a1;
+      --color-fav-bg: #fef3c7;       /* fond de la carte favorite */
+      --color-fav-border: #b45309;   /* bordure de la carte favorite (≈4,9:1 sur le fond) */
+
+      --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+      --space-2: 8px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --radius-card: 12px;
+      --transition: 150ms ease;
+    }
+
+    body {
+      margin: 0;
+      padding: var(--space-4) var(--space-3);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+    }
+
+    /* 2. La carte (état normal) ------------------------------------------ */
+    .carte {
+      max-width: 360px;
+      margin: 0 auto;
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-card);
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+
+    .carte h2 { margin: 0 0 var(--space-2); font-size: 1.25rem; }
+    .carte .commune { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
+
+    /* 3. Le « Favori » : une vraie case à cocher, accessible au clavier ---- */
+    .favori {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      min-height: 44px;              /* cible tactile confortable */
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .toggle-favori {
+      width: 24px;
+      height: 24px;
+      accent-color: var(--color-fav-border);
+      cursor: pointer;
+    }
+
+    /* 4. LE cœur de l'atelier : :has() ------------------------------------
+       « Sélectionne .carte SI elle contient un .toggle-favori coché ».
+       Avant :has(), il fallait du JavaScript pour modifier le parent. */
+    .carte:has(.toggle-favori:checked) {
+      background-color: var(--color-fav-bg);
+      border-color: var(--color-fav-border);
+    }
+
+    /* Bonus : la carte entière signale le focus clavier de sa case */
+    .carte:has(.toggle-favori:focus-visible) {
+      outline: 3px solid var(--color-primary);
+      outline-offset: 3px;
+    }
+
+    /* Le texte « Favori » ne dépend pas que de la couleur : il change aussi de libellé */
+    .favori .etat-on { display: none; }
+    .carte:has(.toggle-favori:checked) .etat-on { display: inline; }
+    .carte:has(.toggle-favori:checked) .etat-off { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="carte">
+      <h2>Château de Chillon</h2>
+      <p class="commune">Veytaux</p>
+
+      <label class="favori">
+        <input type="checkbox" class="toggle-favori">
+        <span class="etat-off">Ajouter aux favoris</span>
+        <span class="etat-on">Favori ✓</span>
+      </label>
+    </article>
+  </main>
+</body>
+</html>
