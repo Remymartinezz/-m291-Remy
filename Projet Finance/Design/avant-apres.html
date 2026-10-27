@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentia — Avant / Après</title>
+  <style>
+    body { margin: 0; padding: 32px; background: #eef0f3; font-family: system-ui, sans-serif; color: #1b1f27; }
+    h1 { margin: 0 0 4px; font-size: 1.6rem; }
+    p.sub { margin: 0 0 24px; color: #4b5563; }
+    .rangee { margin-bottom: 40px; }
+    .rangee h2 { margin: 0 0 12px; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
+    .avant h2 { color: #8a2f38; }
+    .apres h2 { color: #023564; }
+    .ecrans { display: flex; gap: 24px; flex-wrap: wrap; }
+    figure { margin: 0; }
+    figcaption { margin-top: 8px; text-align: center; font-size: .85rem; color: #4b5563; }
+    iframe { width: 390px; height: 844px; border: 1px solid #c9ced6; border-radius: 28px; background: #fff; display: block; }
+    ul { max-width: 900px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <h1>Sentia — Avant / Après</h1>
+  <p class="sub">Avant : Piste A telle que retenue (<code>Réalisations/piste-a-editoriale</code>). Après : <code>site-final</code> (piste hybride, variables de la fiche e3-1).</p>
+
+  <section class="rangee avant">
+    <h2>Avant — Piste A</h2>
+    <div class="ecrans">
+      <figure><iframe src="../Réalisations/piste-a-editoriale/index.html?embed&screen=home" title="Avant, fil"></iframe><figcaption>Le fil</figcaption></figure>
+      <figure><iframe src="../Réalisations/piste-a-editoriale/index.html?embed&screen=detail" title="Avant, fiche"></iframe><figcaption>Fiche d’analyse</figcaption></figure>
+      <figure><iframe src="../Réalisations/piste-a-editoriale/index.html?embed&screen=prefs" title="Avant, préférences"></iframe><figcaption>Préférences</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="rangee apres">
+    <h2>Après — site final</h2>
+    <div class="ecrans">
+      <figure><iframe src="../site-final/index.html?embed&screen=home" title="Après, fil"></iframe><figcaption>Le fil</figcaption></figure>
+      <figure><iframe src="../site-final/index.html?embed&screen=detail" title="Après, fiche"></iframe><figcaption>Fiche d’analyse</figcaption></figure>
+      <figure><iframe src="../site-final/index.html?embed&screen=prefs" title="Après, préférences"></iframe><figcaption>Préférences</figcaption></figure>
+    </div>
+  </section>
+
+  <h2>Ce qui a changé</h2>
+  <ul>
+    <li>Fond blanc (au lieu du blanc chaud) et palette neutre.</li>
+    <li>Une seule couleur d’accent, <code>#023564</code>, pour les boutons, filtres actifs, cases cochées, hausses ; rouge pour les baisses (le vert disparaît).</li>
+    <li>Arrondis plus doux : cartes et feuilles à 12 px, contrôles à 8 px.</li>
+    <li>Variables CSS renommées selon la fiche e3-1 (<code>--color-*</code>, <code>--space-*</code>, <code>--radius-card</code>…).</li>
+    <li>Typographie signature nommée <code>--font-signature</code> (Newsreader) ; Montserrat pour les données.</li>
+  </ul>
+</body>
+</html>

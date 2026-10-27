@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentia — Fil d'actualité financière suisse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="solo">
+  <!-- Comparateur Avant / Après (grand écran uniquement) -->
+  <aside class="comparateur" aria-label="Comparer les versions">
+    <p class="comparateur__titre">Comparer</p>
+    <div class="comparateur__choix" role="group" aria-label="Version affichée">
+      <button class="comparateur__btn" type="button" data-version="avant" aria-pressed="false">Avant</button>
+      <button class="comparateur__btn" type="button" data-version="apres" aria-pressed="true">Après</button>
+    </div>
+<p class="comparateur__aide">Avant : Piste A d’origine.<br>Après : site final (fond blanc, accent unique).</p>
+  </aside>
+  <!-- Cadre smartphone : simple décor de présentation (390 × 844) -->
+  <div class="phone">
+    <div class="app" id="app">
+
+      <header class="masthead" id="masthead"></header>
+      <main class="view" id="view" tabindex="-1"></main>
+      <nav class="tabbar" id="tabbar" aria-label="Navigation principale"></nav>
+
+      <!-- Calques : onboarding, fiche détail, feuilles modales -->
+      <div class="layer" id="layer-onboarding" hidden></div>
+      <div class="layer" id="layer-detail" hidden></div>
+      <div class="layer" id="layer-sheet" hidden></div>
+      <div class="splash" id="splash" hidden></div>
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

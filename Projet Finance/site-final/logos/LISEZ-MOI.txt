@@ -1,0 +1,14 @@
+﻿Logos des actions (pastille ronde des cartes)
+
+Dépose ici un fichier par action, nommé comme l'identifiant :
+
+  nesn.svg   Nestlé
+  novn.svg   Novartis
+  ubsg.svg   UBS
+  smi.svg    SMI (indice, SIX Swiss Exchange)
+  bns.svg    Banque nationale suisse
+  logn.svg   Logitech
+
+- Format conseillé : SVG (ou PNG carré, fond transparent, 256 px minimum).
+- Si un fichier manque, la pastille garde les lettres (N, Nv, U…).
+- Les logos sont des marques déposées de leurs propriétaires : usage de démonstration seulement.
