@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "titre": "Nestlé relève ses prévisions annuelles",
+    "societe": "Nestlé",
+    "ticker": "NESN",
+    "variation": 1.1,
+    "estEnHausse": true,
+    "resume": "Le groupe de Vevey confirme une croissance interne meilleure que prévu.",
+    "tags": ["SMI", "alimentaire", "résultats"],
+    "image": "Projet Finance/site-final/logos/nesn.svg"
+  }
+]
+
+[
+  {
+    "id": 2,
+    "titre": "NOvartis devoile ces nouveaux gouts",
+    "societe": "Novartis",
+    "ticker": "Novn",
+    "variation": 2.1,
+    "estEnHausse": true,
+    "resume": "Novartis confirme la nouvelle gamme de glaces morrand.",
+    "tags": ["Finance", "alimentaire", "résultats"],
+    "image": "Projet Finance/site-final/logos/nesn.svg"
+  }
+]
+
+
+[
+  {
+    "id": 3,
+    "titre": "UBS sort son rapport ESG",
+    "societe": "UBS",
+    "ticker": "UBSG",
+    "variation":3.1,
+    "estEnHausse": true,
+    "resume": "UBS confirme des invesstissements durables dans son rapport ESG 2026",
+    "tags": ["Finance", "ESG", "Durabilitéé"],
+    "image": "Projet Finance/site-final/logos/nesn.svg"
+  }
+]
+
+[
+  {
+    "id": 3,
+    "titre": "BNS sort son plan 2030",
+    "societe": "BNS",
+    "ticker": "BNS",
+    "variation":4.1,
+    "estEnHausse": true,
+    "resume": "UBS confirme des invesstissements durables dans son rapport ESG 2026",
+    "tags": ["Finance", "ESG", "Durabilitéé"],
+    "image": "Projet Finance/site-final/logos/nesn.svg"
+  }
+]
