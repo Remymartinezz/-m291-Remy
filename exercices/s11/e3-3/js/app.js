@@ -30,11 +30,17 @@ fetch("./data.json")
 
     // État 2 — Succès (Success)
     conteneur.innerHTML = donnees.map(function (item) {
-      const sens = item.estEnHausse ? "en hausse" : "en baisse";
+      let tendance = "stable";
+      if (item.variation !== 0) {
+        const sens = item.estEnHausse ? "en hausse" : "en baisse";
+        tendance = sens + " de " + Math.abs(item.variation).toLocaleString("fr-CH") + " %";
+      }
+      const date = new Date(item.date).toLocaleDateString("fr-CH", { day: "numeric", month: "long", year: "numeric" });
       return `
         <article class="carte">
           <h3>${echapper(item.titre)}</h3>
-          <p class="commune">${echapper(item.societe)} (${echapper(item.ticker)}) · ${echapper(sens)} ${echapper(Math.abs(item.variation))} %</p>
+          <p class="commune">${echapper(item.societe)} (${echapper(item.ticker)}) · ${echapper(tendance)}</p>
+          <p class="source">Source : ${echapper(item.source)} · ${echapper(date)}</p>
         </article>
       `;
     }).join("");
