@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S11-AV1 — Écran squelette</title>
+  <link rel="stylesheet" href="skeleton.css">
+</head>
+<body>
+  <h1>Fil d'actualités (démonstration)</h1>
+
+  <p class="visually-hidden" role="status" id="message-chargement">Chargement des cartes en cours</p>
+
+  <section id="liste-cartes" class="cartes-grille" aria-busy="true" aria-labelledby="message-chargement">
+    <!-- Trois squelettes : ils préfigurent la mise en page réelle -->
+    <article class="carte squelette" aria-hidden="true">
+      <div class="squelette__image"></div>
+      <div>
+        <div class="squelette__ligne"></div>
+        <div class="squelette__ligne squelette__ligne--courte"></div>
+      </div>
+    </article>
+    <article class="carte squelette" aria-hidden="true">
+      <div class="squelette__image"></div>
+      <div>
+        <div class="squelette__ligne"></div>
+        <div class="squelette__ligne squelette__ligne--courte"></div>
+      </div>
+    </article>
+    <article class="carte squelette" aria-hidden="true">
+      <div class="squelette__image"></div>
+      <div>
+        <div class="squelette__ligne"></div>
+        <div class="squelette__ligne squelette__ligne--courte"></div>
+      </div>
+    </article>
+  </section>
+
+  <script>
+    const conteneur = document.getElementById("liste-cartes");
+    const message = document.getElementById("message-chargement");
+
+    function echapper(texte) {
+      return String(texte).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    fetch("./e3-3/data.json")
+      .then(function (reponse) {
+        if (!reponse.ok) {
+          throw new Error("Erreur de chargement : " + reponse.status);
+        }
+        return reponse.json();
+      })
+      .then(function (donnees) {
+        // Les vraies cartes remplacent les squelettes dès la réponse
+        conteneur.innerHTML = donnees.map(function (item) {
+          return `
+            <article class="carte">
+              <div></div>
+              <div>
+                <h3>${echapper(item.titre)}</h3>
+                <p class="commune">${echapper(item.societe)} (${echapper(item.ticker)})</p>
+              </div>
+            </article>
+          `;
+        }).join("");
+      })
+      .catch(function (erreur) {
+        console.error("Détail technique :", erreur);
+        conteneur.innerHTML = "<p>⚠️ Impossible de charger les données. Veuillez réessayer ultérieurement.</p>";
+      })
+      .finally(function () {
+        conteneur.setAttribute("aria-busy", "false");
+        message.textContent = "Cartes chargées";
+      });
+  </script>
+</body>
+</html>

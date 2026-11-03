@@ -1,0 +1,102 @@
+/* S11-AV1 — Écran squelette : blocs animés pendant le fetch() */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  color: #0f172a;
+}
+
+h1 {
+  font-size: 1.25rem;
+  margin: 0 0 16px;
+}
+
+.cartes-grille {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .cartes-grille { grid-template-columns: 1fr 1fr; }
+}
+
+.carte {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.carte h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.commune {
+  margin: 0;
+  color: #475569;
+  font-size: .9rem;
+}
+
+/* Squelette : image et deux lignes de texte */
+.squelette {
+  border-color: transparent;
+}
+
+.squelette__image,
+.squelette__ligne {
+  background: #e2e8f0;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.squelette__image {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+}
+
+.squelette__ligne {
+  height: 14px;
+  margin-bottom: 10px;
+}
+
+.squelette__ligne--courte {
+  width: 60%;
+}
+
+/* Balayage lumineux qui traverse chaque bloc */
+.squelette__image::after,
+.squelette__ligne::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #f8fafc, transparent);
+  transform: translateX(-100%);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .squelette__image::after,
+  .squelette__ligne::after {
+    animation: none;
+  }
+}

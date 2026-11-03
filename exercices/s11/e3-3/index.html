@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>e3-3 — Rendu dynamique avec fetch()</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 16px; background: #fff; color: #0f172a; }
+    h1 { font-size: 1.25rem; margin: 0 0 16px; }
+    .cartes-grille { display: grid; gap: 12px; }
+    .carte { border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; }
+    .carte h3 { margin: 0 0 4px; font-size: 1rem; }
+    .commune { margin: 0; color: #475569; font-size: .9rem; }
+    .etat-chargement, .etat-vide, .etat-erreur { padding: 16px; border-radius: 12px; }
+    .etat-chargement { background: #f1f5f9; }
+    .etat-vide { background: #fef3c7; }
+    .etat-erreur { background: #fee2e2; color: #7f1d1d; }
+    @media (min-width: 768px) { .cartes-grille { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Fil d'actualités (démonstration)</h1>
+
+  <section id="liste-cartes" class="cartes-grille" aria-live="polite">
+    <!-- Les cartes seront injectées ici par js/app.js -->
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
