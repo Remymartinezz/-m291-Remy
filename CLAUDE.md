@@ -14,7 +14,8 @@ Version finale = `Projet Finance/site-final/`. Les trois pistes de `Projet Finan
 Les variables supplémentaires gardent le même préfixe (`--color-*`, `--space-*`, `--text-*`, `--radius-*`). Ne jamais mettre une couleur ou un espacement en dur dans une règle : passer par une variable.
 
 ## 3. Emplacements (ne rien inventer)
-- Site final : `Projet Finance/site-final/` (`index.html`, `style.css`, `app.js`, `fonts/`).
+- Site final : `Projet Finance/site-final/` (`index.html`, `style.css`, `app.js`, `data.json`, `fonts/`, `logos/`).
+- Les actualités vivent dans `data.json` (étiquettes en français, `"statut": "demo"`), PAS dans `app.js`. Le site se teste avec `lancer-sentia.bat` (double-clic, sans VS Code) ou Live Server (`http://127.0.0.1`), PAS en double-cliquant (`file://` bloque le `fetch`).
 - Accueil e3-1 : `index.html` et `style.css` à la racine du dépôt.
 - Ateliers : `exercices/s09/`.
 - Documents de conception : `Projet Finance/Design/` (brief, critique, matrice, piste hybride, audits, wireframes).
@@ -35,6 +36,7 @@ Les variables supplémentaires gardent le même préfixe (`--color-*`, `--space-
 - La date du jour s'écrit en petit sous « L'essentiel du jour ». Ne pas écrire « Données de démonstration » en haut de page (seulement en bas, en petit).
 - Hausse et baisse se reconnaissent aussi sans la couleur : flèche + signe + texte masqué (« en hausse »).
 - Titres de cartes : 38 caractères maximum.
+- Fil d'accueil : fil « Éditorial » retenu (carrousel « À la une », mini-courbes, Aujourd'hui / Hier / Cette semaine, brèves). Le 2026-11-05, le retour à la liste « Classique » a été essayé puis annulé (« sans âme ») : garder l'Éditorial.
 
 ## 7. Accessibilité (WCAG 2.2 AA)
 - Texte normal ≥ 4,5:1 ; bordures et icônes actives ≥ 3:1.

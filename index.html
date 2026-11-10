@@ -55,93 +55,10 @@
     <main>
       <h2 class="visually-hidden">Actualités du jour</h2>
 
-      <section class="cartes-grille" aria-label="Fil d'actualités">
+      <p id="etat" role="status"></p>
 
-        <article class="carte">
-          <div class="carte__cote">
-            <p class="variation variation--hausse">+1,1 % <span class="visually-hidden">en hausse</span></p>
-            <span class="pastille" aria-hidden="true">N</span>
-            <span class="ticker">NESN</span>
-          </div>
-          <div class="carte__texte">
-            <p class="carte__rubrique">SMI</p>
-            <h3 class="carte__titre"><a class="carte__lien" href="#">Résultats trimestriels de Nestlé</a></h3>
-            <p class="carte__resume">Légère correction à court terme sur l’action au SMI, mais dividende maintenu.</p>
-            <p class="carte__meta"><strong>94 %</strong> fiabilité · il y a 18 min</p>
-          </div>
-        </article>
-
-        <article class="carte">
-          <div class="carte__cote">
-            <p class="variation variation--baisse">−2,8 % <span class="visually-hidden">en baisse</span></p>
-            <span class="pastille" aria-hidden="true">Nv</span>
-            <span class="ticker">NOVN</span>
-          </div>
-          <div class="carte__texte">
-            <p class="carte__rubrique">SMI</p>
-            <h3 class="carte__titre"><a class="carte__lien" href="#">Feux verts pour un traitement Novartis</a></h3>
-            <p class="carte__resume">Commercialisation immédiate aux États-Unis sur un marché estimé à plusieurs milliards.</p>
-            <p class="carte__meta"><strong>95 %</strong> fiabilité · il y a 42 min</p>
-          </div>
-        </article>
-
-        <article class="carte">
-          <div class="carte__cote">
-            <p class="variation variation--hausse">+0,9 % <span class="visually-hidden">en hausse</span></p>
-            <span class="pastille" aria-hidden="true">U</span>
-            <span class="ticker">UBSG</span>
-          </div>
-          <div class="carte__texte">
-            <p class="carte__rubrique">Banque</p>
-            <h3 class="carte__titre"><a class="carte__lien" href="#">UBS précise son calendrier de capital</a></h3>
-            <p class="carte__resume">La banque détaille le renforcement de ses fonds propres pour 2027.</p>
-            <p class="carte__meta"><strong>92 %</strong> fiabilité · il y a 1 h</p>
-          </div>
-        </article>
-
-        <article class="carte">
-          <div class="carte__cote">
-            <p class="variation variation--hausse">+0,4 % <span class="visually-hidden">en hausse</span></p>
-            <span class="pastille" aria-hidden="true">S</span>
-            <span class="ticker">SMI</span>
-          </div>
-          <div class="carte__texte">
-            <p class="carte__rubrique">SMI</p>
-            <h3 class="carte__titre"><a class="carte__lien" href="#">Le SMI termine la séance en hausse</a></h3>
-            <p class="carte__resume">Les valeurs défensives soutiennent l’indice, porté par la santé et l’alimentaire.</p>
-            <p class="carte__meta"><strong>97 %</strong> fiabilité · il y a 2 h</p>
-          </div>
-        </article>
-
-        <article class="carte">
-          <div class="carte__cote">
-            <p class="variation variation--stable">0,0 % <span class="visually-hidden">stable</span></p>
-            <span class="pastille" aria-hidden="true">B</span>
-            <span class="ticker">BNS</span>
-          </div>
-          <div class="carte__texte">
-            <p class="carte__rubrique">Devises</p>
-            <h3 class="carte__titre"><a class="carte__lien" href="#">La BNS maintient son taux directeur</a></h3>
-            <p class="carte__resume">Le franc reste stable face à l’euro après l’annonce de la décision.</p>
-            <p class="carte__meta"><strong>98 %</strong> fiabilité · il y a 3 h</p>
-          </div>
-        </article>
-
-        <article class="carte">
-          <div class="carte__cote">
-            <p class="variation variation--hausse">+1,6 % <span class="visually-hidden">en hausse</span></p>
-            <span class="pastille" aria-hidden="true">L</span>
-            <span class="ticker">LOGN</span>
-          </div>
-          <div class="carte__texte">
-            <p class="carte__rubrique">Tech</p>
-            <h3 class="carte__titre"><a class="carte__lien" href="#">Logitech confirme ses prévisions</a></h3>
-            <p class="carte__resume">Le groupe maintient sa feuille de route pour l’exercice en cours.</p>
-            <p class="carte__meta"><strong>90 %</strong> fiabilité · il y a 5 h</p>
-          </div>
-        </article>
-
-      </section>
+      <!-- Les cartes viennent de data.json : app.js les fabrique ici -->
+      <section class="cartes-grille" id="liste-cartes" aria-label="Fil d'actualités"></section>
     </main>
 
     <!-- ===== Pied de page ===== -->
@@ -181,5 +98,6 @@
     </ul>
   </nav>
 
+  <script src="app.js"></script>
 </body>
 </html>

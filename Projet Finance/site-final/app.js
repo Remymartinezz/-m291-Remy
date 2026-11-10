@@ -18,95 +18,50 @@
   ];
   const FILTERS = ['Pour vous', 'SMI', 'Banque', 'Tech', 'Devises'];
 
+  // Les actualités viennent de data.json (chargé au démarrage, voir 7. INIT).
   // Titres ≤ 38 caractères. « change » en pourcents (signe conservé).
-  const NEWS = [
-    {
-      id: 'nesn', ticker: 'NESN', company: 'Nestlé S.A.', mono: 'N', cats: ['SMI', 'Agroalimentaire'],
-      title: 'Résultats trimestriels de Nestlé',
-      lead: 'Croissance organique de 3,2 %, tirée par les marchés émergents.',
-      teaser: 'Légère correction à court terme sur l’action au SMI, mais dividende maintenu.',
-      change: 1.1, trust: 94, age: '18 min', urgent: true, unread: true,
-      fait: 'Nestlé publie une croissance organique de 3,2 % sur neuf mois et confirme ses objectifs annuels.',
-      impact: 'Le titre progresse de 1,1 % dans la séance ; le dividende est maintenu.',
-      analysis: [
-        'Le géant de Vevey confirme ses objectifs annuels malgré la hausse du coût des matières premières.',
-        'Au cours des neuf premiers mois de l’année, Nestlé a démontré la résilience de son portefeuille. Les divisions Nespresso et Purina PetCare restent les principaux moteurs de croissance, gagnant du terrain en Europe et en Asie.',
-        'Toutefois, la direction signale une pression continue sur les marges brutes en raison de l’envolée des cours du cacao et du café vert. Pour compenser, le groupe accélère son plan d’économies internes, avec un objectif de réduction des coûts de 1,2 milliard CHF.'
-      ],
-      source: 'Communiqué financier officiel Nestlé', date: '22 sept. 2026'
-    },
-    {
-      id: 'novn', ticker: 'NOVN', company: 'Novartis SA', mono: 'Nv', cats: ['SMI'],
-      title: 'Feux verts pour un traitement Novartis',
-      lead: 'Commercialisation immédiate aux États-Unis sur un marché estimé à plusieurs milliards.',
-      teaser: 'Commercialisation immédiate aux États-Unis sur un marché estimé à plusieurs milliards.',
-      change: -2.8, trust: 95, age: '42 min', urgent: true, unread: true,
-      fait: 'L’autorité sanitaire américaine autorise un nouveau traitement de Novartis.',
-      impact: 'Le titre recule de 2,8 % : une partie de l’annonce était déjà anticipée.',
-      analysis: [
-        'L’autorisation ouvre la voie à une commercialisation immédiate sur le marché américain.',
-        'Le repli du jour reflète surtout des prises de bénéfices : les investisseurs avaient déjà intégré cette décision dans les cours.',
-        'À moyen terme, la contribution attendue du produit reste un des relais de croissance du groupe, sous réserve du rythme de remboursement.'
-      ],
-      source: 'Communiqué officiel Novartis', date: '22 sept. 2026'
-    },
-    {
-      id: 'ubsg', ticker: 'UBSG', company: 'UBS Group', mono: 'U', cats: ['Banque', 'SMI'],
-      title: 'UBS précise son calendrier de capital',
-      lead: 'La banque détaille le renforcement de ses fonds propres pour 2027.',
-      teaser: 'La banque détaille le renforcement de ses fonds propres pour 2027.',
-      change: 0.9, trust: 92, age: '1 h', urgent: false, unread: true,
-      fait: 'UBS publie un calendrier de renforcement de ses fonds propres.',
-      impact: 'Le titre gagne 0,9 % ; les analystes saluent la visibilité offerte.',
-      analysis: [
-        'Le calendrier réduit l’incertitude réglementaire qui pesait sur le titre depuis plusieurs mois.',
-        'La charge de capital reste élevée, mais l’échelonnement laisse une marge pour maintenir le rendement aux actionnaires.'
-      ],
-      source: 'Présentation officielle UBS', date: '22 sept. 2026'
-    },
-    {
-      id: 'smi', ticker: 'SMI', company: 'Swiss Market Index', mono: 'S', cats: ['SMI'],
-      title: 'Le SMI termine la séance en hausse',
-      lead: 'Les valeurs défensives soutiennent l’indice.',
-      teaser: 'Les valeurs défensives soutiennent l’indice, porté par la santé et l’alimentaire.',
-      change: 0.4, trust: 97, age: '2 h', urgent: false, unread: false,
-      fait: 'Le SMI clôture en hausse de 0,4 % à l’issue de la séance.',
-      impact: 'La santé et l’alimentaire compensent le repli de certaines valeurs cycliques.',
-      analysis: [
-        'Une séance calme, dominée par les poids lourds de l’indice.',
-        'Les investisseurs restent prudents avant les prochaines publications de résultats.'
-      ],
-      source: 'SIX Swiss Exchange', date: '22 sept. 2026'
-    },
-    {
-      id: 'bns', ticker: 'BNS', company: 'Banque nationale suisse', mono: 'B', cats: ['Devises', 'Banque'],
-      title: 'La BNS maintient son taux directeur',
-      lead: 'Le franc reste stable face à l’euro après l’annonce.',
-      teaser: 'Le franc reste stable face à l’euro après l’annonce de la décision.',
-      change: 0, trust: 98, age: '3 h', urgent: true, unread: false,
-      fait: 'La BNS laisse son taux directeur inchangé lors de son examen trimestriel.',
-      impact: 'Le franc reste stable face à l’euro ; peu de réaction sur les marchés.',
-      analysis: [
-        'La décision était largement anticipée par les marchés.',
-        'La banque centrale garde la possibilité d’intervenir sur le marché des changes si nécessaire.'
-      ],
-      source: 'Communiqué officiel BNS', date: '22 sept. 2026'
-    },
-    {
-      id: 'logn', ticker: 'LOGN', company: 'Logitech', mono: 'L', cats: ['Tech'],
-      title: 'Logitech confirme ses prévisions',
-      lead: 'Le groupe maintient sa feuille de route pour l’exercice en cours.',
-      teaser: 'Le groupe maintient sa feuille de route pour l’exercice en cours.',
-      change: 1.6, trust: 90, age: '5 h', urgent: false, unread: false,
-      fait: 'Logitech confirme ses prévisions de ventes pour l’exercice.',
-      impact: 'Le titre progresse de 1,6 % dans un marché technologique hésitant.',
-      analysis: [
-        'La confirmation rassure après plusieurs trimestres de demande irrégulière.',
-        'Les marges restent le point de vigilance, en raison du coût des composants.'
-      ],
-      source: 'Communiqué officiel Logitech', date: '22 sept. 2026'
+  let NEWS = [];
+
+  // Typographie française : apostrophe courbe, espace insécable avant % ; : ! ? »
+  // (évite « 3,2 » en fin de ligne et « % » seul au début de la suivante)
+  function typo(texte) {
+    return String(texte || '').replace(/'/g, '’').replace(/ ([%;:!?»])/g, ' $1').replace(/« /g, '« ');
+  }
+
+  // Une fiche de data.json (étiquettes en français) → l'objet utilisé par les vues
+  function versFiche(item) {
+    const date = new Date(item.date);
+    return {
+      id: String(item.id), ticker: item.ticker, company: typo(item.societe), mono: item.initiales, cats: item.tags,
+      title: typo(item.titre), lead: typo(item.chapeau), teaser: typo(item.resume),
+      change: item.variation, trust: item.fiabilite, age: item.anciennete, urgent: item.urgent, unread: item.nonLue,
+      fait: typo(item.fait), impact: typo(item.impact), analysis: (item.analyse || []).map(typo), image: item.image, trend: item.tendance || [],
+      source: typo(item.source),
+      date: isNaN(date) ? item.date : date.toLocaleDateString('fr-CH', { day: 'numeric', month: 'short', year: 'numeric' }),
+      dateIso: item.date, ageMin: enMinutes(item.anciennete)
+    };
+  }
+
+  // « 18 min », « 4 h », « 2 j », « 1 sem. » → minutes, pour départager deux fiches du même jour
+  function enMinutes(texte) {
+    const m = /^(\d+)\s*(min|h|j|sem)/.exec(texte || '');
+    return m ? Number(m[1]) * { min: 1, h: 60, j: 1440, sem: 10080 }[m[2]] : Infinity;
+  }
+
+  // Requête coupée après 5 s : sur un réseau lent, l'utilisateur n'attend pas indéfiniment
+  const DELAI_MAX_MS = 5000;
+  async function chargerActualites() {
+    const controleur = new AbortController();
+    const minuterie = setTimeout(() => controleur.abort(), DELAI_MAX_MS);
+    try {
+      const reponse = await fetch('data.json', { signal: controleur.signal });
+      if (!reponse.ok) throw new Error('Erreur réseau : code HTTP ' + reponse.status);
+      const donnees = await reponse.json();
+      return Array.isArray(donnees) ? donnees.map(versFiche) : [];
+    } finally {
+      clearTimeout(minuterie);
     }
-  ];
+  }
 
   /* 2. ÉTAT --------------------------------------------------------------- */
   // Si le navigateur refuse d'enregistrer (navigation privée…), on le dit une seule fois
@@ -135,13 +90,13 @@
     detail: null,             // id de la fiche ouverte
     sheet: null,              // 'broker' | 'about' | null
     onboarding: null,         // 0 | 1 | 2 | null
-    onboarded: store.get('onboarded', false)
+    onboarded: store.get('onboarded', false),
+    chargement: 'en-cours'    // 'en-cours' | 'erreur' | 'lent' | null (données prêtes)
   };
   let draftPrefs = state.prefs.slice();
 
   const $ = (id) => document.getElementById(id);
   const byId = (id) => NEWS.find((n) => n.id === id);
-  store.get('read', []).forEach((id) => { const n = byId(id); if (n) n.unread = false; });   // alertes déjà lues
 
   /* 3. ICÔNES (SVG en ligne, trait fin) ----------------------------------- */
   const P = {
@@ -155,10 +110,11 @@
     back: '<path d="M15 5l-7 7 7 7"/>',
     alert: '<path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.2v.1"/>',
     external: '<path d="M8 16L17 7M9 7h8v8"/>',
-    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>'
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    info: '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.1"/>'
   };
   const icon = (name, extra) => '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"' + (extra || '') + '>' + P[name] + '</svg>';
-  const fmtPct = (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(1).replace('.', ',') + ' %';
+  const fmtPct = (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(1).replace('.', ',') + ' %';
 
   // Variation : flèche + signe + couleur (jamais la couleur seule)
   function delta(v) {
@@ -188,11 +144,11 @@
     return '<svg class="brand__mark" viewBox="0 0 163.61 147.99" aria-hidden="true" fill="currentColor"><path d="M41.08,100.71l-5.95-.85c-3.12-43.65,35.72-72.85,37.98-74.83,2.27-1.98-21.83-2.27-24.09-3.69-2.27-1.42,2.27-10.77,8.5-12.19C63.76,7.73,82.75.08,82.75.08c30.61-1.98,31.18,36,31.18,36,0,0,7.37,3.68,8.22,11.34.85,7.65-24.09,42.24-24.09,42.24,0,0,1.42,7.65,13.32,16.16,11.91,8.5-19.84,32.6-18.71,21.26,1.13-11.34-6.8-19.84-10.2-11.62-3.4,8.22-17.86,11.34-17.86,11.34,4.25-12.47-4.25-18.43-8.22-17.01-3.97,1.42-2.27,20.13-2.27,20.13l-9.07.85.28,8.5h-17.86c-1.13-3.97,13.61-38.55,13.61-38.55ZM66.38,12.41c-7.94,1.35-11.62,3.33-7.72,4.68,3.9,1.35,14.6-.14,14.6-.14,0,0,1.06-5.88-6.87-4.54ZM78.78,10.78c-4.46,3.33,1.7,3.47,2.41,2.2.71-1.28,7.37-2.06,7.37-2.06-.64-2.41-5.31-3.47-9.78-.14ZM81.33,43.66c2.69-3.05,4.61-6.02,2.62-13.89,0,0-2.06,6.8-3.68,6.73-1.63-.07-2.76,0-2.76,0,0,0,1.13,10.2,3.83,7.16ZM72.5,80.51c-3.21,3.4-7.56,10.96-7.56,10.96,0,0,17.39-2.65,20.6-24,0,0-9.83,9.64-13.04,13.04ZM85.58,19.49c-1.77-1.56-5.17-2.34-4.04.21,1.13,2.55,5.67,6.73,8.01,3.54s2.41-8.65,2.41-8.65c0,0-4.61,6.45-6.38,4.89ZM96.71,37.49c-.28-3.33-.99-8.08-3.83-8.29l-.43,6.09-4.32-6.59-.57,7.65s4.82,9.85,6.17,9.43c1.35-.43,3.26-4.96,2.98-8.29ZM105.57,28.56l-2.69,1.98-5.53-5.46-.21,4.54,8.5,8.15-.07-9.21ZM95.17,114.9c1.32.38,1.13,4.91,3.4,5.86s1.32-5.48,2.46-6.8c1.13-1.32,5.86,1.13,5.86,1.13,1.51-7.37-9.64-6.24-9.64-6.24,0,0-.38-2.27-1.13-3.59-.76-1.32-5.1-12.47-5.1-12.47,0,0-1.7,1.51-2.46,6.05-.76,4.54,5.29,15.69,6.61,16.06ZM91.02,85.61c3.97-6.61,8.69-17.2,8.69-17.2,0,0-7.43,5.76-10.58,11.91-3.78,7.37-7.94,10.96-7.94,10.96,0,0,5.86.94,9.83-5.67ZM60.78,99.41c.19,4.35,7.37,15.69,8.88,16.25,1.51.57-.76,3.59,1.7,3.97,2.46.38,1.51-4.35,2.46-5.86.94-1.51,5.67,1.7,5.67,1.7.76-5.1-3.59-7.18-3.59-7.18,0,0-3.78,4.54-8.31-6.8-4.54-11.34-6.99-6.43-6.8-2.08ZM48.5,85.8s30.05-6.24,29.29-28.16c0,0-17.76,15.87-21.73,16.25-3.97.38,7.94-17.57,10.02-19.46,2.08-1.89,7.94-3.97,6.61-16.63,0,0-29.29,22.3-29.1,44.98l-.38,13.61,5.29-10.58Z"/><path d="M.28,118.69l16.63-.57v-7.28l8.03.19-.45,6.88s99.39.78,100.03,0c.64-.78-.57-2.41-.57-2.41-5.67-8.93,5.17-15.94,5.17-15.94,9.85-3.54,15.94,1.77,19.56,3.83,3.61,2.06,2.48,6.66,5.39,7.09,2.91.43,6.52,7.23,8.22,7.8,1.7.57,2.06,6.73-.71,8.29-2.76,1.56-2.81,6.69-4.13,7.25-1.32.57-4.75,3.3-12.12,11.33-7.37,8.03-22.02-3.12-23.91-6.52-1.89-3.4,3.59-11.53,3.59-11.53H33.45l.47,6.99-8.22-.19-.47-6.99-9.64.09.19,6.99H7.56l-.09-6.52-7.46.19.28-8.98ZM147.33,126.63c2.84.65,2.46.56,3.49-1.34,1.03-1.89-2.28-2.92-1.34-3.11.94-.19,1.6-1.8,1.69-3.31.09-1.51-4.54-1.11-4.54-1.11,0,0-3.76,4.55-3.85,5.12-.09.57,4.55,3.76,4.55,3.76ZM134.05,138.01c1.85,1.11,3.01-2.16,3.16-1.21.15.95,1.74,1.67,3.24,1.82,1.51.15,1.3-4.49,1.3-4.49,0,0-4.4-3.94-4.96-4.06-.56-.11-3.94,4.4-3.94,4.4-.76,2.81-.66,2.43,1.2,3.54ZM132,112.26s4.54,3.78,5.1,3.87c.57.09,3.78-4.54,3.78-4.54.66-2.83.57-2.46-1.32-3.5s-2.93,2.27-3.12,1.32-1.8-1.61-3.31-1.7c-1.51-.09-1.13,4.54-1.13,4.54Z"/></svg>';
   }
 
-  // Pastille de l'action : logo de l'entreprise (logos/<id>.svg ou .png) ; si le fichier
-  // n'existe pas encore, les lettres restent affichées (voir l'écouteur « error » plus bas).
+  // Pastille de l'action : logo de l'entreprise (champ « image » de data.json) ; sans image,
+  // ou si le fichier manque, les lettres restent affichées (voir l'écouteur « error » plus bas).
   function pastille(n) {
     return '<span class="monogram serif" aria-hidden="true">' +
-      '<img class="monogram__logo" src="logos/' + n.id + '.svg" alt="" width="28" height="28" decoding="async">' +
+      (n.image ? '<img class="monogram__logo" src="' + n.image + '" alt="" width="28" height="28" decoding="async">' : '') +
       '<span class="monogram__lettres">' + n.mono + '</span></span>';
   }
 
@@ -202,11 +158,51 @@
     return titre.length > TITRE_MAX ? titre.slice(0, TITRE_MAX - 1).trimEnd() + '…' : titre;
   }
 
+  // Fil « éditorial » (version Après) : à la une, mini-courbes, fil découpé dans le temps
+  function editorial() {
+    return document.documentElement.dataset.version !== 'avant';
+  }
+
+  // Mini-courbe des 5 derniers jours (la couleur suit le sens de la variation, comme la flèche)
+  function courbe(n, grande) {
+    const v = n.trend;
+    if (!v || v.length < 2) return '';
+    const w = grande ? 120 : 44, h = grande ? 36 : 16, marge = grande ? 3 : 2;
+    const min = Math.min.apply(null, v), ecart = (Math.max.apply(null, v) - min) || 1;
+    const pts = v.map((p, i) => [i * w / (v.length - 1), h - marge - (p - min) / ecart * (h - 2 * marge)]);
+    // Courbe lissée (Catmull-Rom → Bézier) : passe par chaque point, sans angles
+    const f = (x) => x.toFixed(1);
+    let d = 'M' + f(pts[0][0]) + ',' + f(pts[0][1]);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      d += ' C' + f(p1[0] + (p2[0] - p0[0]) / 6) + ',' + f(p1[1] + (p2[1] - p0[1]) / 6) + ' ' +
+        f(p2[0] - (p3[0] - p1[0]) / 6) + ',' + f(p2[1] - (p3[1] - p1[1]) / 6) + ' ' + f(p2[0]) + ',' + f(p2[1]);
+    }
+    const fin = pts[pts.length - 1];
+    const sens = n.change > 0 ? 'up' : n.change < 0 ? 'down' : 'flat';
+    return '<svg class="courbe courbe--' + sens + (grande ? ' courbe--grande' : '') + '" viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" aria-hidden="true">' +
+      (grande ? '<path class="courbe__aire" d="' + d + ' L' + w + ',' + h + ' L0,' + h + ' Z"/>' : '') +
+      '<path class="courbe__ligne" d="' + d + '"/>' +
+      (grande ? '<circle class="courbe__fin" cx="' + f(fin[0]) + '" cy="' + f(fin[1]) + '" r="2.5"/>' : '') + '</svg>';
+  }
+
+  // Jour de référence du fil : la date la plus récente des données
+  function jourDuFil() {
+    return NEWS.reduce((max, n) => (n.dateIso > max ? n.dateIso : max), '');
+  }
+  function libelleJour() {
+    const d = new Date(jourDuFil());
+    if (isNaN(d)) return '';
+    const jour = d.toLocaleDateString('fr-CH', { weekday: 'long' });
+    return jour.charAt(0).toUpperCase() + jour.slice(1) + ' ' +
+      d.toLocaleDateString('fr-CH', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
   function card(n, opts) {
     opts = opts || {};
     const meta = opts.meta || '<b>' + n.trust + ' %</b> fiabilité · ' + n.age;
     return '<li><button class="card" data-action="open" data-id="' + n.id + '">' +
-      '<span class="card__side">' + pastille(n) + '<span class="card__ticker">' + n.ticker + '</span></span>' +
+      '<span class="card__side">' + pastille(n) + '<span class="card__ticker">' + n.ticker + '</span>' + (editorial() ? courbe(n) : '') + '</span>' +
       '<span class="card__body"><span class="kicker">' + n.cats[0] + '</span><h3 class="card__title">' + titreCourt(n.title) + '</h3>' +
         '<span class="card__teaser">' + n.teaser + '</span><span class="card__meta">' + meta + '</span></span>' +
     '<span class="card__delta">' + delta(n.change) + '</span></button></li>';
@@ -215,13 +211,21 @@
   function filtered() {
     let list = NEWS.slice();
     if (state.filter === 'Pour vous') {
-      list = list.filter((n) => n.cats.some((c) => state.prefs.indexOf(c) > -1));
+      if (state.prefs.length) list = list.filter((n) => n.cats.some((c) => state.prefs.indexOf(c) > -1));   // sans préférence : tout le fil
     } else {
       list = list.filter((n) => n.cats.indexOf(state.filter) > -1);
     }
-    const q = state.query.trim().toLowerCase();
+    const q = state.query.trim().toLowerCase().replace(/'/g, '’');   // l'apostrophe tapée = l'apostrophe affichée
     if (q) list = list.filter((n) => (n.title + ' ' + n.company + ' ' + n.ticker + ' ' + n.teaser).toLowerCase().indexOf(q) > -1);
-    return list;
+    return trier(list);
+  }
+
+  // Ordre du fil : d'abord les fiches qui touchent le plus de catégories choisies par l'utilisateur,
+  // puis la plus récente. Sans catégorie choisie, seul l'ordre chronologique compte.
+  function trier(list) {
+    const pertinence = (n) => n.cats.filter((c) => state.prefs.indexOf(c) > -1).length;
+    return list.slice().sort((a, b) =>
+      (pertinence(b) - pertinence(a)) || b.dateIso.localeCompare(a.dateIso) || (a.ageMin - b.ageMin));
   }
 
   function filterTabs() {
@@ -230,8 +234,57 @@
   }
 
   // Zone « résultats » : seule cette partie change quand on filtre ou qu'on tape
+  // « À la une » : la première actualité du fil, en grand
+  function carteUne(n) {
+    return '<button class="une" data-action="open" data-id="' + n.id + '">' +
+      '<span class="une__haut"><span class="kicker">À la une · ' + n.cats[0] + '</span><span class="card__meta">' + n.age + '</span></span>' +
+      '<h2 class="une__titre">' + n.title + '</h2>' +
+      '<span class="une__fait">' + n.fait + '</span>' +
+      '<span class="une__chiffres"><span class="une__societe">' + pastille(n) + '<span><b>' + n.ticker + '</b>' + n.company + '</span></span>' +
+        '<span class="une__cours">' + courbe(n, true) + delta(n.change) + '</span></span>' +
+    '</button>';
+  }
+
+  // Carrousel « À la une » : on fait défiler au doigt (aucun défilement automatique),
+  // la diapositive suivante dépasse un peu pour montrer qu'il y en a d'autres.
+  function carrouselUne(unes) {
+    if (!unes.length) return '';
+    if (unes.length === 1) return carteUne(unes[0]);
+    return '<section class="une-carrousel" aria-roledescription="carrousel" aria-label="À la une">' +
+      '<div class="une-piste">' + unes.map((n, i) =>
+        '<div class="une-diapo" role="group" aria-roledescription="diapositive" aria-label="' + (i + 1) + ' sur ' + unes.length + '">' + carteUne(n) + '</div>').join('') +
+      '</div><div class="une-points">' + unes.map((n, i) =>
+        '<button class="une-point" data-action="une-aller" data-index="' + i + '" aria-label="Afficher l’actualité ' + (i + 1) + ' sur ' + unes.length + '"' + (i === 0 ? ' aria-current="true"' : '') + '></button>').join('') +
+      '</div></section>';
+  }
+
+  // Brève : une ligne (ticker, titre, variation) pour les actualités plus anciennes
+  function breve(n) {
+    return '<li><button class="breve" data-action="open" data-id="' + n.id + '">' +
+      '<span class="breve__ticker">' + n.ticker + '</span><span class="breve__titre">' + titreCourt(n.title) + '</span>' + delta(n.change) +
+    '</button></li>';
+  }
+
+  // Fil découpé dans le temps : à la une, puis Aujourd'hui, Hier, Cette semaine (en brèves)
+  function filEditorial(list) {
+    const ref = new Date(jourDuFil());
+    const ecartJours = (n) => Math.round((ref - new Date(n.dateIso)) / 86400000);
+    const reste = list.slice();
+    // À la une : les 3 actualités les plus importantes pour l'utilisateur (ordre « pertinence puis date »)
+    const unes = state.filter === 'Pour vous' ? reste.splice(0, 3) : [];
+    const periodes = [
+      { titre: 'Aujourd’hui', fiches: reste.filter((n) => ecartJours(n) === 0), rendu: (l) => '<ul class="feed">' + l.map((n) => card(n)).join('') + '</ul>' },
+      { titre: 'Hier', fiches: reste.filter((n) => ecartJours(n) === 1), rendu: (l) => '<ul class="feed">' + l.map((n) => card(n)).join('') + '</ul>' },
+      { titre: 'Cette semaine', fiches: reste.filter((n) => ecartJours(n) > 1), rendu: (l) => '<ul class="breves">' + l.map(breve).join('') + '</ul>' }
+    ];
+    return carrouselUne(unes) + periodes.filter((p) => p.fiches.length).map((p) =>
+      '<section class="periode"><h2 class="periode__titre">' + p.titre + '<span>' + p.fiches.length + '</span></h2>' + p.rendu(p.fiches) + '</section>').join('');
+  }
+
   function resultsHome() {
+    if (!NEWS.length) return emptyBlock('Aucune actualité pour le moment', 'Les nouvelles actualités s’affichent ici dès leur publication.');
     const list = filtered();
+    if (list.length && editorial()) return filEditorial(list);
     return list.length ? '<ul class="feed">' + list.map((n) => card(n)).join('') + '</ul>' : emptyBlock('Aucune actualité', 'Aucune actualité ne correspond à ce filtre pour le moment.', '<button class="btn" data-action="prefs">Modifier mes catégories</button>');
   }
 
@@ -242,7 +295,7 @@
   }
 
   function viewHome() {
-    return '<h1 class="section-title">L’essentiel du jour</h1><p class="dateline">Mardi 29 septembre 2026</p>' + filterTabs() +
+    return '<h1 class="section-title">L’essentiel du jour</h1><p class="dateline">' + libelleJour() + '</p>' + filterTabs() +
       '<div class="results" id="results">' + resultsHome() + '</div>';
   }
 
@@ -257,8 +310,36 @@
     return '<div class="empty"><div class="rule"></div><h2 class="empty__title">' + title + '</h2><p>' + text + '</p>' + (bouton || '') + '</div>';
   }
 
+  // Pendant le fetch : des cartes « squelettes » qui préfigurent le fil
+  function viewChargement() {
+    const squelette = '<li><div class="card card--squelette">' +
+      '<span class="card__side"><span class="squelette squelette--rond"></span></span>' +
+      '<span class="card__body"><span class="squelette squelette--ligne"></span><span class="squelette squelette--ligne squelette--courte"></span></span>' +
+      '</div></li>';
+    return '<h1 class="section-title">L’essentiel du jour</h1><p class="dateline">Mardi 29 septembre 2026</p>' +
+      '<p class="sr-only" role="status">Chargement des actualités…</p>' +
+      '<ul class="feed" aria-hidden="true">' + squelette.repeat(4) + '</ul>';
+  }
+
+  // Échec du fetch (fichier absent, coupure, délai dépassé) : un message clair et un bouton
+  function viewErreur() {
+    // Page ouverte en double-clic (file://) : le navigateur interdit de lire data.json, réessayer ne sert à rien
+    if (state.chargement === 'fichier') {
+      return '<h1 class="section-title">L’essentiel du jour</h1>' +
+        '<div role="alert">' + emptyBlock('Ouvrez Sentia avec Live Server',
+          'Le navigateur bloque la lecture des actualités quand la page est ouverte comme un fichier. Dans VS Code, faites un clic droit sur index.html, puis choisissez Open with Live Server.') + '</div>';
+    }
+    // Ton direct : d'abord ce que l'utilisateur veut (voir le fil), puis quoi faire
+    const texte = state.chargement === 'lent'
+      ? 'La connexion est lente. Pour voir les actualités, réessayez dans un instant.'
+      : 'Pour voir les actualités, vérifiez votre connexion puis réessayez.';
+    return '<h1 class="section-title">L’essentiel du jour</h1>' +
+      '<div role="alert">' + emptyBlock('Le fil n’est pas disponible', texte,
+        '<button class="btn" data-action="recharger">Réessayer</button>') + '</div>';
+  }
+
   function viewWatchlist() {
-    const list = NEWS.filter((n) => state.saved.indexOf(n.id) > -1);
+    const list = trier(NEWS.filter((n) => state.saved.indexOf(n.id) > -1));
     return '<h1 class="section-title">Mes favoris</h1>' +
       (list.length
         ? '<ul class="feed">' + list.map((n) => card(n)).join('') + '</ul>'
@@ -271,12 +352,13 @@
     let list = NEWS.filter((n) => n.urgent || n.unread);
     if (state.notifChips.indexOf('Urgentes') > -1) list = list.filter((n) => n.urgent);
     if (state.notifChips.indexOf('Banques') > -1) list = list.filter((n) => n.cats.indexOf('Banque') > -1);
+    list = trier(list);
     return '<h1 class="section-title">Alertes</h1>' +
       '<div class="chips">' + chips + '<button class="link-btn" data-action="route" data-route="settings">Paramètres des alertes</button></div>' +
       (list.length
         ? '<ul class="feed">' + list.map((n) =>
             '<li class="notif ' + (n.unread ? 'notif--unread' : '') + '"><button class="card" data-action="open" data-id="' + n.id + '">' +
-            '<span class="card__side">' + pastille(n) + '<span class="card__ticker">' + n.ticker + '</span></span>' +
+            '<span class="card__side">' + pastille(n) + '<span class="card__ticker">' + n.ticker + '</span>' + (editorial() ? courbe(n) : '') + '</span>' +
             '<span class="card__body">' + (n.urgent ? '<span class="notif__flag">' + icon('alert') + 'Urgent</span>' : '<span class="kicker">' + n.cats[0] + '</span>') +
               '<h3 class="card__title">' + (n.unread ? '<span class="notif__dot" aria-hidden="true"></span><span class="sr-only">Non lue · </span>' : '') + titreCourt(n.title) + '</h3>' +
               '<span class="card__teaser">' + n.teaser + '</span><span class="card__meta">Source officielle · ' + n.age + '</span></span>' +
@@ -292,7 +374,9 @@
       '<section class="group"><h2 class="kicker group__label">Préférences</h2>' +
         '<button class="row" data-action="prefs"><span class="row__main">Mon fil<span class="row__sub">' + prefLabel + '</span></span>' + icon('chevron') + '</button></section>' +
       '<section class="group"><h2 class="kicker group__label">Alertes</h2>' +
-        '<button class="row" data-action="route" data-route="notifs"><span class="row__main">3 alertes activées<span class="row__sub">Urgentes · Banques · SMI</span></span>' + icon('chevron') + '</button></section>' +
+        // Reflète les filtres réellement actifs sur l'écran Alertes (plus de texte écrit en dur)
+        '<button class="row" data-action="route" data-route="notifs"><span class="row__main">Mes alertes<span class="row__sub">' +
+          (state.notifChips.length ? 'Filtres : ' + state.notifChips.join(' · ') : 'Toutes les alertes, sans filtre') + '</span></span>' + icon('chevron') + '</button></section>' +
       '<section class="group"><h2 class="kicker group__label">Apparence</h2>' +
         '<div class="row"><span class="row__main">Mode ' + (state.dark ? 'sombre' : 'clair') + '</span>' +
         '<button class="switch" role="switch" data-action="theme" aria-checked="' + state.dark + '" aria-label="Mode sombre"></button></div></section>' +
@@ -316,14 +400,15 @@
   function detailHtml(n) {
     const saved = state.saved.indexOf(n.id) > -1;
     return '<div class="sheet-full" role="dialog" aria-modal="true" aria-label="' + n.title + '">' +
-      '<div class="sheet-full__bar"><span class="trust"><b>' + n.trust + ' %</b> de fiabilité · vérifiée</span>' +
+      '<div class="sheet-full__bar"><button class="trust" data-action="fiabilite"><b>' + n.trust + ' %</b> de fiabilité' + icon('info') +
+        '<span class="sr-only"> : comment ce score est calculé</span></button>' +
         '<span style="display:flex">' +
           '<button class="icon-btn" data-action="save" data-id="' + n.id + '" aria-pressed="' + saved + '" aria-label="' + (saved ? 'Retirer des favoris' : 'Enregistrer') + '">' + icon('bookmark') + '</button>' +
           '<button class="icon-btn" data-action="close" aria-label="Fermer">' + icon('close') + '</button></span></div>' +
       '<div class="sheet-full__body">' +
         '<div class="detail__head"><div><span class="kicker">' + n.cats[0] + ' · ' + n.company + '</span>' +
           '<h2 class="detail__title">' + n.title + '</h2><p class="detail__stand">' + n.lead + '</p></div>' +
-          '<div class="detail__quote">' + delta(n.change) + '<span class="detail__ticker">' + n.ticker + '</span></div></div>' +
+          '<div class="detail__quote">' + (editorial() ? courbe(n, true) : '') + delta(n.change) + '<span class="detail__ticker">' + n.ticker + '</span></div></div>' +
         '<div class="brief"><div class="brief__row"><span class="kicker">Le fait</span><p>' + n.fait + '</p></div>' +
           '<div class="brief__row"><span class="kicker">L’impact</span><p>' + n.impact + '</p></div></div>' +
         '<div class="analysis"><h3>Analyse Sentia</h3>' + n.analysis.map((p) => '<p>' + p + '</p>').join('') + '</div>' +
@@ -348,6 +433,19 @@
       '<button class="sheet__cancel" data-action="sheet-close">Annuler</button></div>';
   }
 
+  // Le score de fiabilité expliqué : ce qu'il mesure, en trois points
+  function fiabiliteHtml() {
+    return '<div class="sheet" role="dialog" aria-modal="true" aria-label="Le score de fiabilité"><div class="sheet__grip"></div>' +
+      '<h2 class="sheet__title">Le score de fiabilité</h2>' +
+      '<p class="sheet__lead">Il indique à quel point vous pouvez vous fier à une actualité. Trois points comptent :</p>' +
+      '<ul class="sheet__liste">' +
+        '<li><strong>La source.</strong> Un communiqué officiel compte plus qu’un article de presse.</li>' +
+        '<li><strong>Le recoupement.</strong> D’autres sources confirment la même information.</li>' +
+        '<li><strong>La fraîcheur.</strong> Les chiffres datent de moins de 24 heures.</li></ul>' +
+      '<p class="sheet__lead">Dans cette démonstration, les scores sont fictifs.</p>' +
+      '<button class="btn btn--ghost" data-action="sheet-close">Fermer</button></div>';
+  }
+
   function aboutHtml() {
     return '<div class="sheet" role="dialog" aria-modal="true" aria-label="À propos"><div class="sheet__grip"></div>' +
       '<h2 class="sheet__title">À propos de Sentia</h2>' +
@@ -363,7 +461,8 @@
       body = '<span class="kicker">Bienvenue</span><h2 class="onb__title">Bienvenue sur Sentia</h2><div class="onb__rule"></div>' +
         '<p class="onb__lead">L’actualité financière suisse, analysée simplement.</p>' +
         '<p class="sheet__lead" style="margin-top:1.25rem">Sentia transforme les actualités financières en synthèses rapides pour vous aider à comprendre l’essentiel.</p>';
-      foot = '<button class="btn" data-action="onb-next">Continuer →</button>';
+      foot = '<button class="btn" data-action="onb-next">Continuer →</button>' +
+        '<button class="sheet__cancel" data-action="onb-passer">Passer l’introduction</button>';
     } else if (step === 1) {
       body = '<span class="kicker">Le principe</span><h2 class="onb__title">Comment fonctionne Sentia ?</h2><div class="onb__rule"></div>' +
         '<p class="sheet__lead">Chaque actualité est synthétisée en trois niveaux pour comprendre rapidement ce qui compte.</p>' +
@@ -371,14 +470,21 @@
           '<li><span class="steps__n">01</span><div><strong>Fait</strong><span>Novartis relève ses prévisions annuelles.</span></div></li>' +
           '<li><span class="steps__n">02</span><div><strong>Impact</strong><span>Le titre progresse après l’annonce.</span></div></li>' +
           '<li><span class="steps__n">03</span><div><strong>Analyse</strong><span>Ce que cela change, en quelques lignes.</span></div></li></ol>';
-      foot = '<button class="btn" data-action="onb-next">Configurer mon fil →</button>';
+      foot = '<button class="btn" data-action="onb-next">Configurer mon fil →</button>' +
+        '<button class="sheet__cancel" data-action="onb-prev">Retour</button>';
     } else {
       body = '<span class="kicker">Votre fil</span><h2 class="onb__title">Personnalisez votre fil</h2><div class="onb__rule"></div>' +
         '<p class="sheet__lead">Quels marchés et secteurs souhaitez-vous suivre ?</p><div class="checks" role="group">' +
         CATEGORIES.map((c) => '<button class="check" role="checkbox" data-action="pref" data-key="' + c.key + '" aria-checked="' + (draftPrefs.indexOf(c.key) > -1) + '">' +
           '<span class="check__box">' + icon('check') + '</span>' + c.label + '</button>').join('') + '</div>' +
         '<button class="link-btn" data-action="pref-all">Tout sélectionner</button>';
-      foot = '<button class="btn" data-action="onb-done"' + (draftPrefs.length ? '' : ' disabled') + '>Créer mon fil →</button>';
+      // Depuis les paramètres, on modifie un fil qui existe déjà : « Enregistrer » et « Annuler »
+      const desactive = draftPrefs.length ? '' : ' disabled';
+      foot = state.editionPrefs
+        ? '<button class="btn" data-action="onb-done"' + desactive + '>Enregistrer</button>' +
+          '<button class="sheet__cancel" data-action="onb-annuler">Annuler</button>'
+        : '<button class="btn" data-action="onb-done"' + desactive + '>Créer mon fil →</button>' +
+          '<button class="sheet__cancel" data-action="onb-prev">Retour</button>';
     }
     return '<div class="onb" role="dialog" aria-modal="true" aria-label="Bienvenue"><div class="onb__body">' + body + '</div><div class="onb__foot">' + foot + dots(step) + '</div></div>';
   }
@@ -502,7 +608,9 @@
     indicator.style.transform = 'translateX(' + (slot || 0) * 100 + '%)';
 
     const views = { home: viewHome, search: viewSearch, watchlist: viewWatchlist, notifs: viewNotifs, settings: viewSettings };
-    $('view').innerHTML = views[state.route]();
+    $('view').innerHTML = state.chargement === 'en-cours' ? viewChargement()
+      : state.chargement ? viewErreur()
+      : views[state.route]();
     if (state.route !== lastRoute) {          // nouvel écran : entrée en cascade
       $('view').scrollTop = 0;
       restartAnim($('view'), 'view--enter', 900);
@@ -510,11 +618,13 @@
     }
 
     const det = $('layer-detail'), sh = $('layer-sheet'), ob = $('layer-onboarding');
+    if (state.detail && !byId(state.detail)) state.detail = null;   // fiche inconnue (données pas encore chargées)
     det.hidden = !state.detail;
     det.innerHTML = state.detail ? detailHtml(byId(state.detail)) : '';
     det.classList.toggle('layer--detail-open', !!state.detail);
     sh.hidden = !state.sheet;
-    sh.innerHTML = state.sheet === 'broker' ? brokerHtml() : state.sheet === 'about' ? aboutHtml() : state.sheet === 'reset' ? resetHtml() : '';
+    sh.innerHTML = state.sheet === 'broker' ? brokerHtml() : state.sheet === 'about' ? aboutHtml() : state.sheet === 'reset' ? resetHtml()
+      : state.sheet === 'fiabilite' ? fiabiliteHtml() : '';
     
     ob.hidden = state.onboarding === null;
     ob.classList.toggle('onb-static', prevOnb !== null && state.onboarding !== null);   // étape suivante : seul le contenu glisse
@@ -611,7 +721,11 @@
       setTimeout(() => racine.classList.remove('theme-fade'), 400);
     },
     chip(t) { toggle(state.notifChips, t.dataset.chip); render(); },
-    prefs() { draftPrefs = state.prefs.slice(); state.onboarding = 2; render(); },
+    prefs() { draftPrefs = state.prefs.slice(); state.editionPrefs = true; state.onboarding = 2; render(); },
+    fiabilite() { state.sheet = 'fiabilite'; render(); },
+    'onb-prev'() { state.onboarding -= 1; render(); },
+    'onb-passer'() { state.onboarding = 2; render(); },
+    'onb-annuler'() { state.editionPrefs = false; state.onboarding = null; render(); },
     reset() { state.sheet = 'reset'; render(); },        // demande confirmation avant d'effacer
     'reset-do'() {
       closeLayer('layer-sheet', () => {
@@ -621,6 +735,14 @@
         state.onboarding = 0; draftPrefs = state.prefs.slice();
         render();
       });
+    },
+    recharger() { charger(); },
+    // Point du carrousel : amène la diapositive choisie
+    'une-aller'(t) {
+      const carrousel = t.closest('.une-carrousel');
+      const diapo = carrousel.querySelectorAll('.une-diapo')[Number(t.dataset.index)];
+      const piste = carrousel.querySelector('.une-piste');
+      piste.scrollTo({ left: diapo.offsetLeft - piste.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
     },
     'clear-search'() { state.query = ''; const q = $('q'); if (q) q.value = ''; swapFeed(true); },
     'chips-clear'() { state.notifChips = []; render(); },
@@ -637,7 +759,13 @@
       const cta = document.querySelector('[data-action="onb-done"]');
       if (cta) cta.disabled = false;
     },
-    'onb-done'() { state.prefs = draftPrefs.slice(); store.set('prefs', state.prefs); store.set('onboarded', true); state.onboarding = null; state.filter = 'Pour vous'; render(); }
+    'onb-done'() {
+      const edition = state.editionPrefs;
+      state.prefs = draftPrefs.slice(); store.set('prefs', state.prefs); store.set('onboarded', true);
+      state.onboarding = null; state.editionPrefs = false; state.filter = 'Pour vous';
+      render();
+      if (edition) showToast('Vos catégories sont enregistrées.');
+    }
   };
 
   document.addEventListener('click', (e) => {
@@ -650,6 +778,21 @@
       swapFeed(false);                          // seule la liste change : le champ garde le focus
     }
   });
+  // Carrousel : le point actif suit la diapositive visible (« scroll » ne remonte pas : phase de capture)
+  document.addEventListener('scroll', (e) => {
+    const piste = e.target;
+    if (!piste.classList || !piste.classList.contains('une-piste')) return;
+    const diapos = piste.querySelectorAll('.une-diapo');
+    const pas = diapos.length > 1 ? diapos[1].offsetLeft - diapos[0].offsetLeft : 1;
+    const actif = Math.round(piste.scrollLeft / pas);
+    piste.parentElement.querySelectorAll('.une-point').forEach((p, i) => {
+      if (i === actif) p.setAttribute('aria-current', 'true'); else p.removeAttribute('aria-current');
+    });
+  }, true);
+
+  // La version change (Avant / Après) : on redessine l'écran
+  window.addEventListener('sentia:affichage', () => { if (!state.chargement) render(); });
+
   // Le geste « glisser vers le bas » demande la fermeture (le panneau est déjà sorti de l'écran)
   window.addEventListener('sentia:fermer', (e) => {
     if (e.detail === 'feuille') state.sheet = null; else { state.detail = null; state.sheet = null; }
@@ -663,6 +806,27 @@
   });
 
   /* 7. INIT --------------------------------------------------------------- */
+  // Charge data.json et pilote les 4 états : chargement (squelettes), succès (fil),
+  // vide (message dans le fil) et erreur (message + bouton « Réessayer »).
+  function charger(ensuite) {
+    state.chargement = 'en-cours';
+    render();
+    chargerActualites()
+      .then((liste) => {
+        NEWS = liste;
+        store.get('read', []).forEach((id) => { const n = byId(id); if (n) n.unread = false; });   // alertes déjà lues
+        state.chargement = null;
+        lastRoute = null;                         // rejoue l'entrée en cascade des cartes
+        if (ensuite) ensuite();
+        render();
+      })
+      .catch((erreur) => {
+        console.error('Détail technique :', erreur);
+        state.chargement = location.protocol === 'file:' ? 'fichier' : erreur.name === 'AbortError' ? 'lent' : 'erreur';
+        render();
+      });
+  }
+
   // ?screen=… permet d'ouvrir directement un écran (utilisé pour les captures)
   function boot() {
     // Structure fixe de la barre d'onglets : l'indicateur ne sera jamais recréé
@@ -672,17 +836,17 @@
 
     const screen = params.get('screen');
     if (screen) {
+      const premier = () => NEWS[0] && NEWS[0].id;
       const s = { welcome: () => { state.onboarding = 0; }, how: () => { state.onboarding = 1; }, prefs: () => { state.onboarding = 2; },
         home: () => {}, search: () => { state.route = 'search'; state.query = state.query || 'nes'; },
-        detail: () => { state.detail = 'nesn'; }, broker: () => { state.detail = 'nesn'; state.sheet = 'broker'; },
-        watchlist: () => { state.route = 'watchlist'; state.saved = ['nesn', 'ubsg']; },
+        detail: () => { state.detail = premier(); }, broker: () => { state.detail = premier(); state.sheet = 'broker'; },
+        watchlist: () => { state.route = 'watchlist'; state.saved = NEWS.slice(0, 3).filter((n, i) => i !== 1).map((n) => n.id); },
         notifs: () => { state.route = 'notifs'; state.notifChips = []; }, settings: () => { state.route = 'settings'; } };
       if (screen === 'splash') { $('splash').innerHTML = splashHtml(); $('splash').hidden = false; }
-      else if (s[screen]) s[screen]();
-      render();
+      charger(s[screen]);
       return;
     }
-    render();
+    charger();
     const sp = $('splash'); sp.innerHTML = splashHtml(); sp.hidden = false;
     setTimeout(() => {
       if (!state.onboarded) { state.onboarding = 0; render(); }
@@ -701,15 +865,17 @@
 (function () {
   'use strict';
   const racine = document.documentElement;
-  const boutons = document.querySelectorAll('[data-version]');
+  const params = new URLSearchParams(location.search);
+  const boutons = document.querySelectorAll('button[data-version]');
 
   function choisir(version) {
     racine.dataset.version = version;
     boutons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.version === version)));
+    window.dispatchEvent(new CustomEvent('sentia:affichage'));
   }
 
   boutons.forEach((b) => b.addEventListener('click', () => choisir(b.dataset.version)));
-  choisir(new URLSearchParams(location.search).get('version') === 'avant' ? 'avant' : 'apres');
+  choisir(params.get('version') === 'avant' ? 'avant' : 'apres');
 })();
 
 /* ==========================================================================
