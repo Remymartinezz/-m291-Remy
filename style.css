@@ -470,3 +470,27 @@ button {
     font-size: 2.25rem;
   }
 }
+
+/* e3-4 : recherche et formulaire de contact */
+.recherche { margin: var(--space-3, 1rem) 0; }
+.recherche label,
+.contact label { display: block; font-weight: 600; margin: .75rem 0 .25rem; }
+.recherche input,
+.contact input,
+.contact textarea {
+  width: 100%; font: inherit; padding: .6rem .75rem;
+  border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-bg); color: var(--color-text);
+}
+.aucun-resultat { color: var(--color-text-muted); padding: var(--space-3, 1rem) 0; }
+.contact { margin-top: 2rem; max-width: 40rem; }
+.contact button {
+  min-height: 44px; padding: .6rem 1.2rem; margin-top: .75rem; font: inherit; font-weight: 600;
+  border: 0; border-radius: 8px; background: var(--color-primary); color: var(--color-on-primary); cursor: pointer;
+}
+.contact button:hover { background: var(--color-primary-hover); }
+/* Tant qu'un champ obligatoire est vide, le bouton est gris ; il devient bleu quand tout est rempli */
+.contact:invalid button { background: #6b7280; cursor: not-allowed; }
+.contact button:focus-visible,
+.recherche input:focus-visible,
+.contact input:focus-visible,
+.contact textarea:focus-visible { outline: 3px solid var(--color-text); outline-offset: 2px; }

@@ -12,6 +12,14 @@ let tousLesLieux = [];
 function afficherLieux(liste) {
   conteneur.textContent = "";
 
+  if (liste.length === 0) {
+    const aucun = document.createElement("p");
+    aucun.className = "aucun-resultat";
+    aucun.textContent = "Aucune actualité ne correspond à votre recherche.";
+    conteneur.append(aucun);
+    return;
+  }
+
   for (const fiche of liste) {
     const carte = document.createElement("article");
     carte.className = "carte";
@@ -119,3 +127,38 @@ fetch("data.json")
     zoneEtat.textContent =
       "Impossible de charger les actualités. Rechargez la page dans un moment.";
   });
+
+// ----- Recherche instantanée (e3-4) -----
+// Le filtre travaille sur une copie : tousLesLieux reste la collection complète.
+
+const champRecherche = document.getElementById("recherche");
+
+champRecherche.addEventListener("input", function () {
+  const motCle = champRecherche.value.toLowerCase().trim();
+
+  const resultats = tousLesLieux.filter(function (fiche) {
+    return fiche.titre.toLowerCase().includes(motCle) ||
+      fiche.societe.toLowerCase().includes(motCle) ||
+      fiche.ticker.toLowerCase().includes(motCle);
+  });
+
+  afficherLieux(resultats);
+});
+
+// ----- Formulaire de contact (e3-4) -----
+// preventDefault() empêche le rechargement de la page.
+
+const formulaire = document.getElementById("form-contact");
+
+formulaire.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const nom = document.getElementById("champ-nom").value.trim();
+  const message = document.getElementById("champ-message").value.trim();
+
+  if (nom.length === 0 || message.length === 0) {
+    return;
+  }
+
+  document.getElementById("confirmation").hidden = false;
+});

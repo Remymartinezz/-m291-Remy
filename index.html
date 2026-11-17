@@ -55,10 +55,25 @@
     <main>
       <h2 class="visually-hidden">Actualités du jour</h2>
 
+      <div class="recherche">
+        <label for="recherche">Rechercher une actualité</label>
+        <input id="recherche" type="search" autocomplete="off" placeholder="Titre, société ou ticker">
+      </div>
+
       <p id="etat" role="status"></p>
 
       <!-- Les cartes viennent de data.json : app.js les fabrique ici -->
       <section class="cartes-grille" id="liste-cartes" aria-label="Fil d'actualités"></section>
+
+      <form id="form-contact" class="contact">
+        <h2>Nous écrire</h2>
+        <label for="champ-nom">Votre nom</label>
+        <input id="champ-nom" type="text" required>
+        <label for="champ-message">Votre message</label>
+        <textarea id="champ-message" rows="4" required></textarea>
+        <button type="submit">Envoyer</button>
+        <p id="confirmation" role="status" hidden>Merci, votre message est bien reçu.</p>
+      </form>
     </main>
 
     <!-- ===== Pied de page ===== -->
