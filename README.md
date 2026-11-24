@@ -13,3 +13,11 @@ Créer un stand de granita avec la création d'entreprise
 -  [Martinez Clarity](martinezclarity.com)
 _- Repo cloné et ouvert dans VS Code._
 
+
+## Micro-interactions
+
+- Les boutons (filtres, recherche, Envoyer) changent de couleur en douceur au survol et au clic, avec un halo bleu clair. Ils disent : « ceci se clique, je vous ai entendu ».
+- Les cartes d'actualité apparaissent en fondu, au chargement et à chaque recherche. Elles disent : « la liste a changé ».
+- Le message « Aucune actualité ne correspond à votre recherche » apparaît en fondu. Il dit : « la recherche a répondu, même si elle n'a rien trouvé ».
+
+Les trois sont coupées quand l'appareil demande moins de mouvement (`prefers-reduced-motion: reduce`).

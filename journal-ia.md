@@ -50,3 +50,22 @@ Une entrée par usage d'une IA dans le projet : ce que j'ai demandé, ce qu'elle
 - Aucune erreur dans la console.
 
 **Ce qui n'est pas vérifié :** le message natif du navigateur sur les champs `required` (il faut le voir à la main).
+
+---
+
+## 24 novembre 2026 : semaine 13 (mouvement utile, micro-interactions, suggestions au clavier)
+
+**Outil :** Claude (Claude Code, dans ma session de travail). Je lui ai demandé de faire les trois exercices et de les mettre sur GitHub.
+
+**Ce qui a été fait :**
+- Exercice 1 (`exercices/s13/1-le-mouvement-utile/`) : retrait du clignotement du titre et du pivot des cartes au survol, ajout d'une transition et d'un halo sur les boutons, des cartes en fondu, et du bloc `prefers-reduced-motion`.
+- Exercice 2 (mon projet, `style.css` et `README.md` à la racine) : trois micro-interactions (boutons, cartes en fondu, message « aucune actualité » en fondu), le halo pris dans ma palette (`#c9d7e8`), le bloc `prefers-reduced-motion`, et la partie « Micro-interactions » du README.
+- Exercice 3 (`exercices/s13/3-les-suggestions-au-clavier/`) : attente de fin de frappe (`setTimeout` / `clearTimeout`, 200 ms), liste de 5 suggestions au plus avec les attributs ARIA d'une combobox, flèches, Entrée, Échap et clic.
+
+**Ce qui a été vérifié (navigateur sans écran, avec et sans l'émulation « moins de mouvement ») :**
+- Exercice 1 : le titre ne s'anime plus, les cartes ont le fondu, `gare` donne 3 cartes ; en mode réduit, plus d'animation ni de transition.
+- Exercice 2 : 30 cartes en fondu, transition sur les boutons, message vide en fondu ; en mode réduit, les trois sont coupés et la recherche marche toujours.
+- Exercice 3 : `hall` donne 3 suggestions et 3 cartes, `sal` 5 suggestions et 8 cartes, `gare` 2 suggestions et 3 cartes, `xyz` ferme la liste ; flèches, Entrée, Échap et clic donnent les résultats de la fiche.
+- Aucune erreur dans la console.
+
+**Ce qui n'est pas vérifié :** le comptage des recherches dans la console (étape 2 de l'exercice 3, ligne `console.log` retirée à l'étape 11), le rendu visuel du halo et du fondu à l'œil, et la version GitHub Pages.

@@ -494,3 +494,53 @@ button {
 .recherche input:focus-visible,
 .contact input:focus-visible,
 .contact textarea:focus-visible { outline: 3px solid var(--color-text); outline-offset: 2px; }
+
+/* ==========================================================================
+   SEMAINE 13 : trois micro-interactions, coupées si l'appareil demande moins de mouvement
+   ========================================================================== */
+:root { --color-halo: #c9d7e8; }   /* bleu très clair, tiré de l'accent #023564 */
+
+/* 1. Les boutons glissent d'une couleur à l'autre et montrent un halo au survol : « ceci se clique, je vous ai entendu » */
+button {
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 0 4px var(--color-halo);
+}
+
+/* 2. Les cartes arrivent en fondu, au chargement et à chaque recherche : « la liste a changé » */
+@keyframes apparaitre {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.carte {
+  animation: apparaitre 0.25s ease-out;
+}
+
+/* 3. Le message « Aucune actualité ne correspond… » apparaît en fondu : « la recherche a répondu, même sans résultat » */
+.aucun-resultat {
+  animation: apparaitre 0.25s ease-out;
+}
+
+/* Moins de mouvement demandé : tout change d'un coup. Ce bloc reste en dernier. */
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+
+  .carte {
+    animation: none;
+  }
+
+  .aucun-resultat {
+    animation: none;
+  }
+}
