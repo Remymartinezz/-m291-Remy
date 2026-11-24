@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentia : démonstration des animations</title>
+  <style>
+    @font-face { font-family: "Montserrat"; src: url("../site-final/fonts/Montserrat-Regular.ttf"); font-weight: 400; }
+    @font-face { font-family: "Montserrat"; src: url("../site-final/fonts/Montserrat-Medium.ttf"); font-weight: 500; }
+    @font-face { font-family: "Montserrat"; src: url("../site-final/fonts/Montserrat-Bold.ttf"); font-weight: 700; }
+    @font-face { font-family: "Newsreader"; src: url("../site-final/fonts/Newsreader-Variable.ttf"); font-weight: 200 800; }
+
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #1b1f27;
+      --color-text-muted: #4b5563;
+      --color-primary: #023564;
+      --color-hairline: #eceef0;
+      --color-border: #d1d5db;
+      --color-down: #b3261e;
+      --ease-out: cubic-bezier(.22, 1, .36, 1);
+      --ease-in: cubic-bezier(.4, 0, 1, 1);
+      --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+      --font-sans: "Montserrat", system-ui, sans-serif;
+      --font-serif: "Newsreader", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); line-height: 1.5; }
+    main { max-width: 46rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    h1 { font-family: var(--font-serif); font-weight: 500; font-size: 2rem; margin: 0 0 .25rem; }
+    .intro { color: var(--color-text-muted); margin: 0 0 2rem; }
+    h2 { font-family: var(--font-serif); font-weight: 600; font-size: 1.35rem; margin: 0 0 .25rem; }
+    .demo { border-top: 1px solid var(--color-hairline); padding: 1.5rem 0 2rem; }
+    .demo p { margin: .25rem 0 1rem; color: var(--color-text-muted); font-size: .9rem; }
+    .meta { font-size: .8rem; color: var(--color-text-muted); letter-spacing: .02em; }
+    button.rejouer {
+      min-height: 44px; padding: .5rem 1rem; font: inherit; font-weight: 600; font-size: .9rem;
+      border: 1px solid var(--color-primary); border-radius: 8px; background: #fff; color: var(--color-primary); cursor: pointer; margin-top: .75rem;
+    }
+    button.rejouer:focus-visible { outline: 3px solid var(--color-text); outline-offset: 2px; }
+    .zone { min-height: 7rem; border: 1px dashed var(--color-border); border-radius: 12px; padding: 1rem; background: #fafafa; }
+
+    /* 1. Filtre : fondu puis cartes qui reviennent une à une */
+    .filtre-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+    .filtre-liste li { padding: .6rem .75rem; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; font-size: .9rem; }
+    .filtre-liste.sort { animation: sortie 150ms var(--ease-in) forwards; }
+    .filtre-liste.revient li { animation: entree 250ms var(--ease-out) both; }
+    .filtre-liste.revient li:nth-child(2) { animation-delay: 80ms; }
+    .filtre-liste.revient li:nth-child(3) { animation-delay: 160ms; }
+    @keyframes sortie { to { opacity: 0; } }
+    @keyframes entree { from { opacity: 0; transform: translateY(8px); } }
+
+    /* 2. Bouton Envoyer : gris vers bleu en fondu */
+    .bouton-envoi {
+      min-height: 44px; padding: .6rem 1.2rem; font: inherit; font-weight: 600; font-size: .9rem;
+      border: 0; border-radius: 8px; background: #6b7280; color: #fff; cursor: not-allowed;
+      transition: background 200ms linear;
+    }
+    .bouton-envoi.pret { background: var(--color-primary); cursor: pointer; }
+
+    /* 3. Confirmation qui glisse depuis le bas */
+    .confirmation { margin: .75rem 0 0; font-weight: 500; color: var(--color-primary); }
+    .confirmation.visible { animation: montee 250ms var(--ease-out) both; }
+    @keyframes montee { from { opacity: 0; transform: translateY(12px); } }
+
+    /* 5. Message vide : fondu sans bouger la mise en page */
+    .vide { font-family: var(--font-serif); font-size: 1.2rem; color: var(--color-text-muted); margin: 0; }
+    .vide.visible { animation: fondu 200ms linear both; }
+    @keyframes fondu { from { opacity: 0; } }
+
+    /* 6. Pastilles : la pastille active s'allonge en glissant */
+    .pastilles { display: flex; gap: .5rem; align-items: center; }
+    .pastilles span { width: 8px; height: 8px; border-radius: 50%; background: var(--color-border); transition: width 200ms var(--ease-out), background 200ms linear; }
+    .pastilles span.actif { width: 22px; border-radius: 4px; background: var(--color-primary); }
+
+    /* 4. Carte qui revient à sa place (rebond léger) */
+    .carte-retour { border: 1px solid var(--color-border); border-radius: 12px; padding: .9rem 1rem; background: #fff; max-width: 18rem; }
+    .carte-retour.revient { animation: rebond 350ms var(--ease-out) both; }
+    @keyframes rebond { 0% { transform: scale(.96); } 60% { transform: scale(1.01); } 100% { transform: scale(1); } }
+
+    /* Moins de mouvement : tout se fait en fondu court, sans déplacement */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+      .filtre-liste li, .confirmation, .carte-retour { transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Des animations sobres pour Sentia</h1>
+  <p class="intro">Six petites transitions à essayer. Chaque bouton rejoue l'animation. Les durées restent entre 150 et 350 ms. Si ton ordinateur est réglé sur « réduire les animations », elles deviennent de simples fondus.</p>
+
+  <section class="demo">
+    <h2>1. Changement de filtre</h2>
+    <p>La liste sort en fondu, puis les cartes reviennent une à une.</p>
+    <div class="zone">
+      <ul class="filtre-liste revient" id="liste-filtre">
+        <li>Résultats trimestriels de Nestlé</li>
+        <li>UBS précise son calendrier de capital</li>
+        <li>Holcim mise sur le béton bas carbone</li>
+      </ul>
+    </div>
+    <button class="rejouer" data-rejouer="filtre">Rejouer</button>
+    <p class="meta">150 ms de sortie, puis 250 ms d'entrée, décalées de 80 ms.</p>
+  </section>
+
+  <section class="demo">
+    <h2>2. Bouton Envoyer : gris, puis bleu</h2>
+    <p>Le bouton passe du gris au bleu quand les champs sont remplis.</p>
+    <div class="zone">
+      <button class="bouton-envoi" id="bouton-envoi" type="button">Envoyer</button>
+    </div>
+    <button class="rejouer" data-rejouer="envoi">Rejouer</button>
+    <p class="meta">200 ms en fondu linéaire.</p>
+  </section>
+
+  <section class="demo">
+    <h2>3. Confirmation qui glisse</h2>
+    <p>Le message « Merci… » monte doucement depuis le bas.</p>
+    <div class="zone">
+      <p class="confirmation" id="confirmation-demo">Merci, votre message est bien reçu.</p>
+    </div>
+    <button class="rejouer" data-rejouer="confirmation">Rejouer</button>
+    <p class="meta">250 ms, décélération.</p>
+  </section>
+
+  <section class="demo">
+    <h2>4. Retour de la carte</h2>
+    <p>Quand on quitte une fiche, la carte reprend sa place avec un léger rebond.</p>
+    <div class="zone">
+      <div class="carte-retour revient" id="carte-retour">Résultats trimestriels de Nestlé</div>
+    </div>
+    <button class="rejouer" data-rejouer="carte">Rejouer</button>
+    <p class="meta">350 ms, rebond de 1 % seulement.</p>
+  </section>
+
+  <section class="demo">
+    <h2>5. Message vide en fondu</h2>
+    <p>« Aucune actualité » apparaît sans faire bouger la page.</p>
+    <div class="zone">
+      <p class="vide visible" id="vide-demo">Aucune actualité ne correspond à votre recherche.</p>
+    </div>
+    <button class="rejouer" data-rejouer="vide">Rejouer</button>
+    <p class="meta">200 ms en fondu.</p>
+  </section>
+
+  <section class="demo">
+    <h2>6. Pastilles du carrousel</h2>
+    <p>La pastille active s'allonge en glissant vers la suivante.</p>
+    <div class="zone">
+      <div class="pastilles" id="pastilles">
+        <span class="actif"></span><span></span><span></span>
+      </div>
+    </div>
+    <button class="rejouer" data-rejouer="pastilles">Passer à la suivante</button>
+    <p class="meta">200 ms, décélération.</p>
+  </section>
+</main>
+
+<script>
+  function rejouer(id, classe) {
+    const el = document.getElementById(id);
+    el.classList.remove(classe);
+    void el.offsetWidth;                   // relance l'animation CSS
+    el.classList.add(classe);
+  }
+
+  document.querySelector('[data-rejouer="filtre"]').addEventListener('click', function () {
+    const liste = document.getElementById('liste-filtre');
+    liste.classList.remove('revient');
+    liste.classList.add('sort');
+    setTimeout(function () {
+      liste.classList.remove('sort');
+      void liste.offsetWidth;
+      liste.classList.add('revient');
+    }, 150);
+  });
+
+  const bouton = document.getElementById('bouton-envoi');
+  document.querySelector('[data-rejouer="envoi"]').addEventListener('click', function () {
+    bouton.classList.remove('pret');
+    setTimeout(function () { bouton.classList.add('pret'); }, 400);
+  });
+
+  document.querySelector('[data-rejouer="confirmation"]').addEventListener('click', function () {
+    rejouer('confirmation-demo', 'visible');
+  });
+
+  document.querySelector('[data-rejouer="carte"]').addEventListener('click', function () {
+    rejouer('carte-retour', 'revient');
+  });
+
+  document.querySelector('[data-rejouer="vide"]').addEventListener('click', function () {
+    rejouer('vide-demo', 'visible');
+  });
+
+  const points = document.querySelectorAll('#pastilles span');
+  let actif = 0;
+  document.querySelector('[data-rejouer="pastilles"]').addEventListener('click', function () {
+    points[actif].classList.remove('actif');
+    actif = (actif + 1) % points.length;
+    points[actif].classList.add('actif');
+  });
+</script>
+</body>
+</html>
